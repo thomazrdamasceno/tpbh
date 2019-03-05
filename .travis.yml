@@ -13,7 +13,7 @@ script:
   - ionic build --prod  
 
 after_success:
-  - firebase deploy --token=${FIREBASE_TOKEN}
+  - firebase deploy --token=${FIREBASE_TOKEN} --non-interactive
 
   notifications:
   email:
