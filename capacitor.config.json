@@ -1,0 +1,6 @@
+{
+  "appId": "com.festtiva.app",
+  "appName": "FesttivaApp",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

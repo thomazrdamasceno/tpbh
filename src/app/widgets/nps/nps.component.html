@@ -1,0 +1,26 @@
+<ion-grid>
+   
+    <ion-row justify-content-center>
+      <ion-col size="auto">
+        <ion-text color="primary">
+            <h4>Em uma escala de 0 a 10. Qual a probabilidade de você indicar o app da Festtiva para um amigo ou conhecido?</h4>
+         </ion-text>
+      </ion-col>
+    </ion-row>
+ </ion-grid>
+ 
+ <ion-grid no-padding>
+    <ion-row  nowrap no-padding>
+      <ion-col *ngFor="let item of itens">
+           <ion-button (click)="selectItem(item)" size="small" expand="block" color="{{selectedItem === item ? 'primary' : 'light'}}">{{item}}</ion-button>
+       </ion-col>
+    </ion-row>
+ </ion-grid>
+ 
+ <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col size="auto">
+         <ion-button color="primary" shape="round">Confirmar avaliação</ion-button>
+      </ion-col>
+    </ion-row>
+ </ion-grid>

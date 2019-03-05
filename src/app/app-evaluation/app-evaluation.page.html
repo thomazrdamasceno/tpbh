@@ -1,0 +1,63 @@
+<ion-header>
+  <!-- Inserir como subheader-->
+  <ion-toolbar>
+    <ion-buttons slot="start">
+       <ion-button routerLink="/search" color="light">
+        <ion-icon name="arrow-back"></ion-icon>
+       </ion-button>
+       <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Avalie o APP</ion-title>
+   
+  </ion-toolbar>
+</ion-header>
+<ion-content  padding>
+
+
+    <h2 *ngIf="sent==true" class="text-center">
+        <ion-text color="primary">
+          Obrigado por avaliar nosso APP!
+        </ion-text>
+      </h2>
+
+  <div *ngIf="sent==false">    
+  <h2 text-center>
+    <ion-text color="primary">
+     Como você avalia nosso APP?
+    </ion-text>
+  </h2>
+  <p text-center>
+    <ion-text color="medium">
+     Seu feedback é muito importante pra nós!
+    </ion-text>
+  </p>
+  <div text-center margin-top  class="">
+    <ion-button  style="font-size: 32px;" no-padding size="large" color="warning" (click)="evaluation.value=item;" fill="clear" *ngFor="let item of values; index as pos ">
+    	<ion-icon  [name]="evaluation.value>pos? 'star': 'star-outline'"></ion-icon>
+    </ion-button>
+  </div>
+  <ion-item>
+  	<ion-label color="primary" position="stacked">Comentários (Opcional)</ion-label>
+    <ion-textarea [(ngModel)]="evaluation.comments"></ion-textarea>
+  </ion-item>
+  <div padding></div>
+
+  
+  <ion-grid>
+  	<ion-row>
+    	<ion-col>
+          <ion-button routerLink="/products/list" expand="block" color="secondary">
+            <ion-icon slot="start" name="time"></ion-icon>
+            Avaliar depois
+          </ion-button>
+        </ion-col>
+      	<ion-col>
+          <ion-button (click)="sendEvaluation(evaluation)" [disabled]="!evaluation.value && evaluation.value!=0" expand="block">
+            <ion-icon slot="start" name="send"></ion-icon>
+            Enviar</ion-button>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+</div> 
+  
+</ion-content>

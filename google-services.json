@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "781562145179",
+    "firebase_url": "https://festtiva-a8a1c.firebaseio.com",
+    "project_id": "festtiva-a8a1c",
+    "storage_bucket": "festtiva-a8a1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781562145179:android:a2fb0ea44fd3cf22",
+        "android_client_info": {
+          "package_name": "com.topcarsbh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "781562145179-aptgpg5o5bfh4jlv5ao74eupugu9153n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaepslib1KEQbFDndKUQW2xFNzDDFvKxw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

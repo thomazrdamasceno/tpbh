@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button color="light" defaultHref="/"></ion-back-button>
+            <ion-menu-button color="light"></ion-menu-button>
+          </ion-buttons>
+          <ion-title>Favoritos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content >
+    
+  <ion-item [hidden]="favorites.length<1">
+    <ion-button (click)="clearAll()" class="button-clear-all" size="small" fill="outline" color="primary" slot="end">
+        Limpar tudo
+    </ion-button>
+  </ion-item>
+  <ion-grid no-margin no-padding>
+    <ion-row no-margin no-padding>
+      <ion-col no-margin no-padding size="12" size-md="4" *ngFor="let product of favorites">
+        <app-product-card-item class="favorites-item" (click)="toDetail(product)" [item]="product"></app-product-card-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

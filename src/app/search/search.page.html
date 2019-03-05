@@ -1,0 +1,207 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+       <ion-button>
+             <ion-icon  color="light" style="font-size: 85px" src="/assets/logo.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+    
+    <ion-buttons slot="end">
+       <ion-button (click)="clearSearch()" color="light">
+       	limpar
+       </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding no-margin>
+  <!--
+  <h2 class="text-center">
+    <ion-icon style="font-size: 75px" color="secondary" name="car"></ion-icon>
+  </h2>
+-->
+
+<ion-spinner *ngIf="loading==true" class="center"   name="crescent"></ion-spinner>
+  <h2 class="text-center">
+     <ion-text color="medium">
+      Qual veículo você está buscando?
+     </ion-text>
+  </h2> 
+
+
+    
+
+    <ion-item margin-bottom *ngIf="brands.length>0">
+        <ion-icon slot="start" name="car"></ion-icon>
+        <ion-label>
+         Escolha uma marca
+        </ion-label>
+  
+        
+            <ionic-selectable
+            class="brand"
+            okButtonText="OK"
+            
+            [hasVirtualScroll]="true" 
+            searchPlaceholder = "Buscar..."
+            searchFailText="Não foi encontrado nenhum item"
+            searchText="Buscar..."
+            closeButtonText="Cancelar"
+            [(ngModel)]="searchOptions.brand"
+            (onChange)="brandChange($event)"
+            itemValueField="id"
+            itemTextField="label"
+            [items]="brands"
+            [canSearch]="true"
+            
+            #brandsComponent>
+          </ionic-selectable>
+        
+        </ion-item>
+
+        <ion-item margin-bottom *ngIf="searchOptions.brand && models?.length>0" >
+            <ion-icon slot="start" name="car"></ion-icon>
+            <ion-label>
+              Escolha um modelo
+            </ion-label>
+      
+                <ionic-selectable
+                okButtonText="OK"
+                class="model"
+                [hasVirtualScroll]="true" 
+                ion-content
+                searchPlaceholder = "Buscar..."
+                searchFailText="Não foi encontrado nenhum item"
+                searchText="Buscar..."
+                closeButtonText="Cancelar"
+                [(ngModel)]="searchOptions.model"
+                itemValueField="id"
+                itemTextField="label"
+                [items]="models"
+                [canSearch]="true"
+                
+                #modelsComponent>
+              </ionic-selectable>
+            
+            </ion-item>
+  
+          
+<div [hidden]="!searchOptions.model || !searchOptions.brand">         
+<ion-item margin-bottom>
+    <ion-icon slot="start" name="car"></ion-icon>
+    <ion-label position="stacked">Digite a versão</ion-label>
+	<ion-input [(ngModel)]="searchOptions.version" name="version" placeholder="Ex: GLS 2.0"></ion-input>
+</ion-item>
+
+<ion-item margin-bottom>
+    <ion-icon slot="start" name="color-palette"></ion-icon>
+    <ion-label position="stacked">Cores</ion-label>
+    <ion-select [(ngModel)]="searchOptions.colors" name="color"  multiple="true">
+      <ion-select-option value="Prata">Prata</ion-select-option>
+      <ion-select-option value="Preto">Preto</ion-select-option>
+      <ion-select-option value="Branco">Branco</ion-select-option>
+      <ion-select-option value="Verde">Verde</ion-select-option>
+      <ion-select-option value="Vermelho">Vermelho</ion-select-option>
+      <ion-select-option value="Vinho">Vinho</ion-select-option>
+      <ion-select-option value="Dourado">Dourado</ion-select-option>
+      <ion-select-option value="Laranja">Laranja</ion-select-option>
+      <ion-select-option value="Amarelo">Amarelo</ion-select-option>
+      <ion-select-option value="Azul">Azul</ion-select-option>
+      <ion-select-option value="Bege">Bege</ion-select-option>
+      <ion-select-option value="Bronze">Bronze</ion-select-option>
+      <ion-select-option value="Marron">Marron</ion-select-option>
+      <ion-select-option value="Rosa">Rosa</ion-select-option>
+      
+    </ion-select>
+  </ion-item>
+  
+  <ion-item no-padding margin-bottom>
+    <ion-item lines="none" no-margin>
+      <ion-icon slot="start" name="calendar"></ion-icon>
+      <ion-label position="stacked">Ano mínimo</ion-label>
+      <ion-select cancel-text="Cancelar" (ionChange)="changeYearsFrom(searchOptions.YearsMin)" [(ngModel)]="searchOptions.yearMin"  name="yearMin" placeholder="Selecione">
+        <ion-select-option *ngFor="let y of yearsFrom" [value]="y">{{y}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+   <ion-item slot="end" no-padding lines="none" no-margin>
+      <ion-label position="stacked">Ano máximo</ion-label>
+      <ion-select cancel-text="Cancelar" [(ngModel)]="searchOptions.yearMax"  name="yearMax" placeholder="Selecione">
+        <ion-select-option *ngFor="let y of yearsTo" [value]="y">{{y}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-item>
+ 
+
+    <ion-item  margin-bottom>
+      <ion-item slot="start" no-padding lines="none" no-margin>
+          <ion-icon slot="start" name="cash"></ion-icon>
+          <ion-label position="stacked">Preço mínimo</ion-label>
+          <ion-select  cancel-text="Cancelar" [(ngModel)]="searchOptions.priceMin"  (ionChange)="changePricesFrom($event)" name="priceMin"  placeholder="Selecione">
+            <ion-select-option *ngFor="let priceFrom of pricesFrom"  [value]="priceFrom">{{priceFrom|currency:'BRL'}}</ion-select-option>
+          </ion-select>
+      </ion-item>
+      <ion-item slot="end" no-padding lines="none" no-margin>
+          <ion-label position="stacked">Preço máximo</ion-label>
+          <ion-select cancel-text="Cancelar"  [(ngModel)]="searchOptions.priceMax"  name="priceMax" placeholder="Selecione">
+            <ion-select-option  *ngFor="let priceTo of pricesTo" [value]="priceTo" >{{priceTo|currency:'BRL'}}</ion-select-option>
+          </ion-select>
+      </ion-item>
+    </ion-item>
+  
+  
+  <ion-item>
+      <ion-item slot="start" no-margin lines="none">
+        <ion-checkbox [(ngModel)]="searchOptions.resale" name="resale"  slot="start" color="primary"></ion-checkbox>
+        <ion-label>Revenda</ion-label>
+      </ion-item>
+      <ion-item slot="end"  no-margin lines="none">
+        <ion-checkbox [(ngModel)]="searchOptions.private" slot="start" name="private" color="primary"></ion-checkbox>
+        <ion-label>Particular</ion-label>
+      </ion-item>
+   </ion-item>
+
+  
+
+  </div>
+
+  <div *ngIf="!searchOptions.brand">
+      <h2 class="text-center">
+        <ion-text color="primary">OU</ion-text>
+      </h2> 
+      <ion-button *ngIf="showSerachByCode!=true" expand="block" (click)="showSerachByCode=true">
+          <ion-icon color="secondary" slot="start" name="send"></ion-icon>
+           Informe o código do veículo
+       </ion-button>
+
+       <ion-item *ngIf="showSerachByCode==true" margin-top>
+          <ion-label color="primary" position="stacked">Buscar pelo código do veículo</ion-label>
+          <ion-input [(ngModel)]="searchOptions.objectID" placeholder="Informe o código do veículo"></ion-input>
+          <ion-buttons slot="end">
+            <ion-button [disabled]="!searchOptions.objectID"  color="primary"  (click)="toDetail(searchOptions.objectID)" fill="outline">OK
+              <ion-icon slot="end" name="send"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+       </ion-item>
+  </div>
+  
+  
+  
+
+  
+  
+ 
+  
+</ion-content>
+  <ion-footer no-border>
+   
+    <ion-toolbar>
+      <ion-button [disabled]="!searchOptions.brand  || !searchOptions.brand"  (click)="search()" fill="clear" color="light" expand="block">
+        Buscar
+        <ion-icon color="secondary" slot="end" name="search"></ion-icon>
+      </ion-button>
+  </ion-toolbar>
+  </ion-footer>
+  
+  

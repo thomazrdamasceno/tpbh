@@ -1,0 +1,70 @@
+// http://ionicframework.com/docs/theming/
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~codemirror/lib/codemirror.css";
+@import "~codemirror/theme/material.css";
+
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+
+/* Ajuste da imagem no PhotoSwipe*/
+.pswp__img{
+    object-fit: cover;
+    width: 100%!important;
+    height: 209px!important;
+  }
+
+
+
+
+ion-header{
+    .button-clear{
+        --border-width: 0;
+        --background: transparent;
+        --color: var(--ion-color-light);
+    }
+}
+
+
+.swiper-button-next, .swiper-button-prev{
+    background-color: white;
+}
+
+
+.menu-header{
+    background-color: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+}
+
+.center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.text-center{
+    text-align: center;
+}
+
+.form-error{
+    font-size: 12px!important;
+    color: var(--ion-color-danger)!important;
+}
+
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }
+
+

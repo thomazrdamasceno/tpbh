@@ -1,0 +1,91 @@
+
+<!--
+<ion-grid>
+  <ion-row>
+   <mat-tab-group [selectedIndex]="selectedIndexTab" (selectedIndexChange)="selectedIndexTabChange($event)">
+    
+     <mat-tab label="CSS Global">
+       
+     </mat-tab>
+     <mat-tab label="CSS">
+       
+     </mat-tab>
+ 
+     <mat-tab label="Html">
+       
+     </mat-tab>
+   
+     <mat-tab label="Firestore">
+     
+     </mat-tab>
+   </mat-tab-group>
+   <ion-item>
+     <ion-input placeholder="Título do protótipo" [(ngModel)]="prototype.title"></ion-input>
+   </ion-item> 
+   <ion-item>
+    <ion-input placeholder="Título do versão" [(ngModel)]="selectedVersion.label"></ion-input>
+  </ion-item>
+   <ion-item>
+     <ion-label>Versão</ion-label>
+     <ion-select [(ngModel)]="selectedVersion" (ionChange)="saveToRemoteView(selectedVersion)" placeholder="Selecione uma versão">
+       <ion-select-option *ngFor="let version of versions" [value]="version">{{version.label}}</ion-select-option>
+     </ion-select>
+   </ion-item>
+ </ion-row>
+ <ion-button (click)="save(prototype, selectedVersion)">
+    <ion-icon slot="start" name="save"></ion-icon>
+   Salvar</ion-button>
+
+ <ion-button  fill="outline" (click)="saveToRemoteView(selectedVersion)">
+    <ion-icon slot="start" name="eye"></ion-icon>
+   View</ion-button>
+
+ <ion-button fill="outline" (click)="saveAsNewVersion(prototype, selectedVersion)">
+    <ion-icon slot="start" name="copy"></ion-icon> Salvar como nova versão</ion-button>
+ </ion-grid>
+ 
+ <div  padding>
+    <ion-button *ngIf="selectedIndexTab==0" size="small" (click)="saveGlobalCss(globalCss)">
+        <ion-icon slot="start" name="save"></ion-icon> Salvar CSS Global</ion-button> 
+    <ngx-codemirror 
+    *ngIf="selectedIndexTab==0"
+     [(ngModel)]="globalCss.data" 
+     [options]="{
+       lineNumbers: true,
+       theme: 'material',
+       mode: 'markdown'
+     }"
+   ></ngx-codemirror>
+  
+ 
+ 
+ <div  padding>
+   <ngx-codemirror 
+   *ngIf="selectedIndexTab==1"
+    [(ngModel)]="selectedVersion.css" 
+    [options]="{
+      lineNumbers: true,
+      theme: 'material',
+      mode: 'markdown'
+    }"
+  ></ngx-codemirror>
+ 
+  <ngx-codemirror 
+  *ngIf="selectedIndexTab==2"
+  [(ngModel)]="selectedVersion.data" 
+  [options]="{
+    lineNumbers: true,
+    theme: 'material',
+    mode: 'markdown'
+  }"
+ ></ngx-codemirror>
+ 
+ </div>
+ 
+ 
+ 
+  <div  padding *ngIf="selectedIndexTab==3">     
+      <ion-input placeholder="path" [(ngModel)]="firestorePath"></ion-input>
+      
+ </div>
+ -->

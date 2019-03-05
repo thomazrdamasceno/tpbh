@@ -1,0 +1,71 @@
+<ion-app>
+        <ion-split-pane>
+          <ion-menu>
+            <ion-header>
+              <ion-toolbar>
+                 <ion-buttons slot="start">
+                       <ion-button >
+                        <ion-icon  color="light" style="font-size: 85px" src="/assets/logo.svg"></ion-icon>
+                       </ion-button>
+                 </ion-buttons>
+                </ion-toolbar>
+            </ion-header>  
+            <ion-content padding>
+            <ion-menu-toggle>
+                <ion-item routerLink="/register-product">
+                    <ion-icon  color="secondary" slot="start" name="car"></ion-icon>
+                    <ion-label><strong>Anuncie seu veículo</strong></ion-label>
+                </ion-item>  
+                <ion-item routerLink="/search">
+                        <ion-icon color="primary" slot="start" name="search"></ion-icon>
+                        <ion-label>Buscar veículo</ion-label>
+                </ion-item>
+                <ion-item routerLink="/favorites">
+                  <ion-icon color="primary"  slot="start" name="heart"></ion-icon>
+                  <ion-label>Favoritos</ion-label>
+                </ion-item>
+                
+                <ion-item (click)="shareOptionsToggle()">
+                  <ion-icon  color="primary"  slot="start" name="share"></ion-icon>
+                  <ion-label>Compartilhar APP</ion-label>
+                </ion-item>
+                
+                <ion-item routerLink="/app-evaluation">
+                  <ion-icon color="primary"  slot="start" name="star"></ion-icon>   
+                    <ion-label>Avalie este APP</ion-label>
+                </ion-item>
+
+              </ion-menu-toggle>  
+
+             
+
+             
+            <ion-item margin-top>
+                <ion-label position="stacked">Buscar pelo código do veículo</ion-label>
+                <ion-input #codProduct placeholder="Informe o código do veículo"></ion-input>
+                <ion-buttons slot="end">
+                  <ion-menu-toggle>
+                     <ion-button  color="primary"  (click)="toDetail(codProduct)" fill="outline">OK</ion-button>
+                  </ion-menu-toggle>
+                </ion-buttons>
+            </ion-item>
+            
+            
+            <p padding style="font-size: 12px;">
+              <ion-text color="medium">TopCarsBH V6.2</ion-text>
+            </p>
+
+            </ion-content>
+              
+          </ion-menu>
+          
+          <ion-router-outlet main>
+          
+          </ion-router-outlet>
+
+        </ion-split-pane>
+
+        
+        
+      </ion-app>
+      

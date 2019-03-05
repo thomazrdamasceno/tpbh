@@ -1,0 +1,41 @@
+   
+          <ion-card>
+            <ion-card-header class="header-container" no-padding>
+               <ion-img class="product-img" [src]="product.imgs[0]"></ion-img>
+                <span class="photo-quantity">
+                  <ion-text style="font-size:14px;"> <ion-icon name="camera"  margin-right></ion-icon> {{product.imgs.length}}</ion-text>
+                </span> 
+                <span class="product-price-container"> <span class="product-price-simbol"></span><span class="product-price"> {{product.price|currency:'BRL'}}</span></span>
+               
+                <div class="product-favorite-button">
+                 <app-favorite-toggle [item]="product" [idProperty]="'objectID'"></app-favorite-toggle>
+                </div>
+            </ion-card-header>
+            
+            <ion-card-content no-padding>
+              <ion-item class="top-info"  lines="none">
+                <ion-label class="product-title">{{product.title}}</ion-label>
+              </ion-item>
+              <ion-item class="medium-info" lines="full">
+                <ion-text class="product-km" slot="start">
+                  {{product.km}}KM
+                </ion-text>
+                <ion-text class="product-year">
+                  {{product.yearManufacture}}/{{product.yearModel}}
+                </ion-text>
+                <ion-text class="product-color" slot="end">
+                  {{product.color}}
+                </ion-text>
+              </ion-item>
+              <ion-item class="bottom-info" lines="none">
+                 <ion-text  class="product-location" slot="start">
+                    <ion-icon name="pin"></ion-icon>
+                    {{product.city?.label}} - MG
+                 </ion-text>
+                <ion-text class="product-type-sale" slot="end">
+                    {{product.privateType==true? 'Particular': 'Revenda'}}
+                 </ion-text>
+              </ion-item>
+              
+            </ion-card-content>
+          </ion-card>

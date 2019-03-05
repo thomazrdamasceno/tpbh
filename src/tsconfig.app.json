@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "module": "es2015"
+  },
+  "exclude": [
+    "test.ts",
+    "/node_modules/p3x-angular-compile/src/CompileModule.ts",
+    "**/*.spec.ts"
+  ]
+}

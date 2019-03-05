@@ -1,0 +1,66 @@
+<ion-header>
+  <!-- Inserir como subheader-->
+  <ion-toolbar>
+    <ion-buttons slot="start">
+       <ion-button routerLink="/search" color="light">
+        <ion-icon name="arrow-back"></ion-icon>
+       </ion-button>
+       <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Resultados <span *ngIf="totalResults">({{totalResults}})</span></ion-title>
+    <ion-buttons slot="end">
+       <ion-button (click)="openOrderOptions()" color="light">
+      	<ion-icon size="large" name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content #pageContent fullscreen>
+
+    <ion-select [hidden]="true" [interfaceOptions]="{header: 'Ordenação por:'}" interface="alert" [(ngModel)]="algoliaIndex" (ionChange)="changeAlgoliaIndex(algoliaIndex)"  #orderSelect>
+        <ion-select-option value="products">Ordenação Original</ion-select-option>
+        <ion-select-option value="producs_title_asc">Título</ion-select-option>
+        <ion-select-option value="products_year_desc">Ano Mais Novo</ion-select-option>
+        <ion-select-option value="products_km_asc">Menor Quilometragem</ion-select-option>
+        <ion-select-option value="products_price_asc">Menor Preço</ion-select-option>
+        <ion-select-option value="products_price_desc">Maior Preço</ion-select-option>
+   </ion-select>
+
+  
+    <ion-refresher slot="fixed" (ionRefresh)="init($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Abaixe para recarregar"
+          refreshingSpinner="circles"
+          refreshingText="Carregando...">
+        </ion-refresher-content>
+    </ion-refresher>
+     
+       <ion-text *ngIf="totalResults" padding style="font-size: 14px" color="medium" padding>Foram encontrados <strong>{{totalResults}}</strong> veículos para sua busca!</ion-text>
+       <div padding *ngIf="totalResults==0 && loading==false">
+          <ion-text  padding style="font-size: 14px" color="medium" padding>Nenhum veículo foi encontrado!</ion-text>    
+          <ion-button expand="block" routerLink="/search">
+            <ion-icon name="options" slot="start"></ion-icon>
+            Alterar filtros de busca
+          </ion-button> 
+          
+       </div>
+        <ion-grid no-margin no-padding>
+          <ion-row no-margin no-padding>
+            <ion-col no-margin no-padding size="12" size-md="4" *ngFor="let product of products">
+              <app-product-card-item class=".product-list-item" (click)="toDetail(product)" [item]="product"></app-product-card-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-infinite-scroll  threshold="30%" (ionInfinite)="getMore($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="">
+
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+     
+</ion-content>
