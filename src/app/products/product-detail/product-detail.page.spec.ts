@@ -1,4 +1,4 @@
-/*
+
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -51,20 +51,16 @@ describe('ProductDetailPage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('O título do produto deve ser exibido na página', async () => {
-    itemMock = dataStubService.getArray('products')[0];
-    component.ngOnInit();
-    component.item = itemMock;
-    fixture.detectChanges();
-    expect(testPage.productTitle.innerHTML).toContain(itemMock.title);
 
+  it('A mensagem "producto não encontrado deve ser exibida quando o item no for encontrado no banco de dados" ', async() => {
+      component.ngOnInit();
+      await fixture.whenStable();
+      delete component.item;
+      fixture.detectChanges();
+      expect(testPage.productNotFound).not.toBeNull();
   });
 
-
-  it('O item deve ser recuperado corretamente de acordo com seu id', async () => {
-   
-  });
-
+  
 
 
 
@@ -73,9 +69,10 @@ describe('ProductDetailPage', () => {
 
 class ProductDetailTestPage extends TestPage<ProductDetailPage> {
 
+  get productNotFound() { return this.query<HTMLElement>('.product-not-found');}
   get productTitle() { return this.query<HTMLElement>('.product-title');}
   get buttonChangeQuantity() { return this.query<HTMLElement>('.button-change-quantity');}
   get changeQuantityAlert () {return this.query<HTMLElement>('.product-change-quantity-alert');}
 }
 
-*/
+

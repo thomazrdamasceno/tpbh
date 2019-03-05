@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { GoogleAnalyticsService } from '../../shared/analytics/analytics.service';
 
 @Component({
-  selector: 'app-app-share',
-  templateUrl: './app-share.page.html',
-  styleUrls: ['./app-share.page.scss'],
+  selector: 'app-share-app',
+  templateUrl: './share-app.component.html',
+  styleUrls: ['./share-app.component.scss']
 })
-export class AppSharePage implements OnInit {
+export class ShareAppComponent implements OnInit {
 
   messageToShare = "https://www.topcarsbh.com.br";
 
@@ -16,9 +17,13 @@ export class AppSharePage implements OnInit {
     {title: "Tumblr", icon: "logo-tumblr", link: `http://www.tumblr.com/share/link?url=${this.messageToShare}`},
     {title: "Twitter", icon: "logo-twitter", link: `http://twitter.com/intent/tweet?text=${this.messageToShare}`}
   ];
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private analyticsService: GoogleAnalyticsService, private modalCtrl: ModalController) { }
 
   share(share){
+
+    this.analyticsService.trackEvent(`share-app-${share.title}`,{
+      category: 'recommendation'
+    });
    
     window.open(share.link,"_system");
   }

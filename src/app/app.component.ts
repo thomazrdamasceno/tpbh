@@ -1,5 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { Platform, IonicModule, ModalController } from '@ionic/angular';
+import { Platform, IonicModule, ModalController, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import * as firebase from 'firebase/app';
@@ -13,7 +13,7 @@ import { PrototypeService } from './prototype/prototype.service';
 import { RoutingStateService } from './shared/routing-state/routing-state.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { GoogleAnalyticsService } from './shared/analytics/analytics.service';
-import { AppSharePage } from './app-share/app-share.page';
+import { ShareAppComponent } from './widgets/share-app/share-app.component';
 
 
 
@@ -51,6 +51,7 @@ export class AppComponent {
     private analyticsService: GoogleAnalyticsService,
     private authService: AuthService,
     private platform: Platform,
+    private alertController: AlertController,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
@@ -78,22 +79,15 @@ export class AppComponent {
     });
   }
 
-  async shareOptionsToggle(){
+  async shareApp(){
 
     let modal = await this.modalController.create({
-      component: AppSharePage,
+      component: ShareAppComponent,
       componentProps: {
         title: 'Compartilhar este APP'
       }
     });
     modal.present();
-    
-   
-    this.analyticsService.trackEvent("share-app",{
-      category: 'recommendation'
-    });
-
-    
     
     
   }
@@ -102,6 +96,16 @@ export class AppComponent {
   async initializeApp() {
 
     
+    if(this.platform.is("desktop")){
+
+      let alert = await this.alertController.create({
+        header: "Problema de compatibilidade",
+        subHeader: "O TopcarsBH é compatível somente com dispositivos móveis.",
+        backdropDismiss: false
+        
+      });
+      await alert.present();
+    }
    
 
     // Inicializa o histórico de navegação

@@ -91,10 +91,11 @@ describe('SearchPage', () => {
   await fixture.whenStable();
 
   component.searchOptions = {
-    yearMin: 2010,
-    yearMax: 2015
+    yearMin: "2010",
+    yearMax: "2015"
   };
 
+  await fixture.whenStable();
   fixture.detectChanges();
   
   

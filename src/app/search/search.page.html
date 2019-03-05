@@ -32,7 +32,7 @@
 
     
 
-    <ion-item margin-bottom *ngIf="brands.length>0">
+    <ion-item lines="full" margin-bottom *ngIf="brands.length>0">
         <ion-icon slot="start" name="car"></ion-icon>
         <ion-label>
          Escolha uma marca
@@ -60,7 +60,7 @@
         
         </ion-item>
 
-        <ion-item margin-bottom *ngIf="searchOptions.brand && models?.length>0" >
+        <ion-item lines="full" margin-bottom *ngIf="searchOptions.brand && models?.length>0" >
             <ion-icon slot="start" name="car"></ion-icon>
             <ion-label>
               Escolha um modelo
@@ -141,12 +141,14 @@
           <ion-icon slot="start" name="cash"></ion-icon>
           <ion-label position="stacked">Preço mínimo</ion-label>
           <ion-select  cancel-text="Cancelar" [(ngModel)]="searchOptions.priceMin"  (ionChange)="changePricesFrom($event)" name="priceMin"  placeholder="Selecione">
+             <ion-select-option  value="">Todos</ion-select-option>
             <ion-select-option *ngFor="let priceFrom of pricesFrom"  [value]="priceFrom">{{priceFrom|currency:'BRL'}}</ion-select-option>
           </ion-select>
       </ion-item>
       <ion-item slot="end" no-padding lines="none" no-margin>
           <ion-label position="stacked">Preço máximo</ion-label>
           <ion-select cancel-text="Cancelar"  [(ngModel)]="searchOptions.priceMax"  name="priceMax" placeholder="Selecione">
+            <ion-select-option  value="">Todos</ion-select-option>
             <ion-select-option  *ngFor="let priceTo of pricesTo" [value]="priceTo" >{{priceTo|currency:'BRL'}}</ion-select-option>
           </ion-select>
       </ion-item>

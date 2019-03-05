@@ -102,7 +102,13 @@ export class ProductDetailPage implements OnInit {
 
 
     this.actRoute.paramMap.subscribe(async data => {
-      const id = data.get('id');
+      let id = data.get('id');
+      //Correção do id
+
+      id = id.replace("t", "");
+      id = id.replace("T", "");
+      id = id.replace("c", "");
+      id = id.replace("C", "");
 
       let loading = await this.loadingController.create();
       await loading.present();
@@ -110,7 +116,7 @@ export class ProductDetailPage implements OnInit {
         filters: `objectID: ${id}`
       }).then((res) => {
 
-          this.item = res.hits[0];
+          this.item = res.hits[0] || {objectID:0};
           loading.dismiss();
       }).catch(()=>{
         loading.dismiss();

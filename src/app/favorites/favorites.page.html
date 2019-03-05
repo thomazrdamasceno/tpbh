@@ -9,7 +9,10 @@
   </ion-header>
 
 <ion-content >
-    
+  <div padding>
+    <ion-text *ngIf="favorites.length" padding style="font-size: 14px" color="medium" padding><strong>{{favorites.length}}</strong> itens.</ion-text>
+    <ion-text *ngIf="favorites.length==0" padding style="font-size: 14px" color="medium" padding>Nenhum item adicionado aos favoritos.</ion-text>
+  </div>
   <ion-item [hidden]="favorites.length<1">
     <ion-button (click)="clearAll()" class="button-clear-all" size="small" fill="outline" color="primary" slot="end">
         Limpar tudo
