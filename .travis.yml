@@ -17,5 +17,5 @@ after_success:
 
   notifications:
   email:
-    on_failure: thomazrdamasceno@gmail.com
-    on_success: thomazrdamasceno@gmail.com
+    on_failure: change
+    on_success: change
