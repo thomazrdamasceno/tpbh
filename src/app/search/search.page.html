@@ -15,7 +15,7 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content padding no-margin>
+<ion-content no-padding no-margin>
   <!--
   <h2 class="text-center">
     <ion-icon style="font-size: 75px" color="secondary" name="car"></ion-icon>
@@ -23,7 +23,7 @@
 -->
 
 <ion-spinner *ngIf="loading==true" class="center"   name="crescent"></ion-spinner>
-  <h2 class="text-center">
+  <h2 padding class="text-center">
      <ion-text color="medium">
       Qual veículo você está buscando?
      </ion-text>
@@ -151,7 +151,7 @@
     </ion-item>
   
   
-  <ion-item>
+  <ion-item margin-bottom>
       <ion-item slot="start" no-margin lines="none">
         <ion-checkbox class="resale" [(ngModel)]="searchOptions.resale" name="resale"  slot="start" color="primary"></ion-checkbox>
         <ion-label>Revenda</ion-label>
@@ -166,11 +166,11 @@
 
   </div>
 
-  <div *ngIf="!searchOptions.brand">
-      <h2 class="text-center">
+  <div padding *ngIf="!searchOptions.brand">
+      <h3 class="text-center">
         <ion-text color="primary">OU</ion-text>
-      </h2> 
-      <ion-button *ngIf="showSerachByCode!=true" expand="block" (click)="showSerachByCode=true">
+      </h3> 
+      <ion-button fill="outline" *ngIf="showSerachByCode!=true" expand="block" (click)="showSerachByCode=true">
           <ion-icon color="secondary" slot="start" name="send"></ion-icon>
            Informe o código do veículo
        </ion-button>
@@ -179,7 +179,7 @@
           <ion-label color="primary" position="stacked">Buscar pelo código do veículo</ion-label>
           <ion-input [(ngModel)]="searchOptions.objectID" placeholder="Informe o código do veículo"></ion-input>
           <ion-buttons slot="end">
-            <ion-button [disabled]="!searchOptions.objectID"  color="primary"  (click)="toDetail(searchOptions.objectID)" fill="outline">OK
+            <ion-button  [disabled]="!searchOptions.objectID"  color="primary"  (click)="toDetail(searchOptions.objectID)" fill="outline">OK
               <ion-icon slot="end" name="send"></ion-icon>
             </ion-button>
           </ion-buttons>

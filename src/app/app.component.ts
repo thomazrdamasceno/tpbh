@@ -13,6 +13,7 @@ import { PrototypeService } from './prototype/prototype.service';
 import { RoutingStateService } from './shared/routing-state/routing-state.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { GoogleAnalyticsService } from './shared/analytics/analytics.service';
+import { AppSharePage } from './app-share/app-share.page';
 
 
 
@@ -53,6 +54,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
+    private modalController: ModalController,
     private routingState: RoutingStateService
 
   ) {
@@ -76,14 +78,16 @@ export class AppComponent {
     });
   }
 
-  shareOptionsToggle(){
+  async shareOptionsToggle(){
 
-    this.showShareOptions = false;
-
-    setTimeout(()=>{
-      this.showShareOptions = true;
-    },500);
-   
+    let modal = await this.modalController.create({
+      component: AppSharePage,
+      componentProps: {
+        title: 'Compartilhar este APP'
+      }
+    });
+    modal.present();
+    
    
     this.analyticsService.trackEvent("share-app",{
       category: 'recommendation'

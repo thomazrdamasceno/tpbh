@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="start" name="close"></ion-icon>
+        Cancelar
+      </ion-button>
+    </ion-buttons> 
+    <ion-title>Compartilhar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <h2 class="text-center">
+    <ion-text color="medium">Escolha uma opção para compartilhar : </ion-text>
+  </h2>
+
+  <ion-grid no-margin>
+    <ion-row no-margin>
+        <ion-col (click)="share(s)" size="6" no-margin *ngFor="let s of shareOptions">
+          <ion-card no-margin>
+            <ion-card-content>
+              <div class="text-center">
+                <ion-icon size="large" color="primary" [name]="s.icon"></ion-icon>
+
+              </div>
+              <div class="text-center">
+                <p>{{s.title|uppercase}}</p>
+              </div>
+            </ion-card-content>
+        </ion-card>
+        </ion-col>
+    </ion-row>
+   </ion-grid>
+
+</ion-content>

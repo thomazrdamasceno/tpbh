@@ -29,12 +29,16 @@ import {GoogleAnalytics} from "@ionic-native/google-analytics/ngx";
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/markdown/markdown';
 import { GoogleAnalyticsService } from './shared/analytics/analytics.service';
+import { AppSharePage } from './app-share/app-share.page';
+import { AppSharePageModule } from './app-share/app-share.module';
 
 
 @NgModule({
 
+  entryComponents: [AppSharePage],
   imports: [
     BrowserModule,
+    AppSharePageModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
