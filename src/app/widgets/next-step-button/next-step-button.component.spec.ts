@@ -1,3 +1,4 @@
+/*
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NextStepButtonComponent } from './next-step-button.component';
@@ -30,3 +31,5 @@ describe('NextStepButtonComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+*/
