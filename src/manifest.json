@@ -1,3 +1,14 @@
 {
-    "gcm_sender_id": "103953800507"
+    "gcm_sender_id": "103953800507",
+    "name": "TopcarsBH",
+  "short_name": "TopcarsBH",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/imgs/logo.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#0077b5",
+  "theme_color": "#0077b5"
 }

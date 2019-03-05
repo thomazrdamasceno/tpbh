@@ -6,6 +6,7 @@ import { mockImports } from '../shared/ionic-fake/mock.imports';
 import { mockProviders } from '../shared/ionic-fake/mock.providers';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { TestPage } from '../shared/test-page/test-page';
+import { IonCheckbox } from '@ionic/angular';
 
 describe('SearchPage', () => {
   let component: SearchPage;
@@ -70,6 +71,18 @@ describe('SearchPage', () => {
 
  })
 
+ it("Particular e revenda devem ser selecionados por padrão", async()=>{
+ 
+
+    component.ngOnInit();
+    await fixture.whenStable();
+    
+    fixture.detectChanges();
+
+    expect(component.searchOptions.resale).toBeTruthy("resale deve ser true");
+    expect(component.searchOptions.private).toBeTruthy("private seve ser true");
+
+ });
   
 
   
@@ -78,6 +91,8 @@ describe('SearchPage', () => {
 
 class SearchTestPage extends TestPage<SearchPage> {
 
+  get resale() { return this.query<IonCheckbox>('.resale');}
+  get private() { return this.query<IonCheckbox>('.private');}
   get brand() { return this.query<HTMLElement>('.brand');}
   get model() { return this.query<HTMLElement>('.model');}
 }

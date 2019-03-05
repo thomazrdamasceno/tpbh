@@ -62,11 +62,14 @@ export class SearchPage implements OnInit {
     
     // Busca salva no localStorage
     this.storage.get('searchOptions').then((options) => {
-       this.searchOptions = options || {};
+       this.searchOptions = options || this.getDefaultSearchOptions();
 
        if(this.searchOptions.brand){
          this.brandChange({value: this.searchOptions.brand});
        }
+
+       console.log("searchOptions aqui!!!");
+       console.log(this.searchOptions);
     });
 
     // Preços e anos
@@ -143,6 +146,14 @@ export class SearchPage implements OnInit {
       this.models  = data;
       this.loading = false;
     });
+  }
+
+  getDefaultSearchOptions(){
+
+    return  {
+      private: true,
+      resale: true
+    }
   }
 
 }
