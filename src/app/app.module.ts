@@ -1,5 +1,5 @@
 import {AngularFireStorageModule} from '@angular/fire/storage';
-import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -64,6 +64,7 @@ import { AppSharePageModule } from './app-share/app-share.module';
     AuthService,
     ProductsService,
     UserService,
+    {provide: LOCALE_ID, useValue: 'pt-BR'},
     // {provide: AngularFireAuth, useClass: FireAuthStub},
     // {provide: AngularFirestore, useClass: FirestoreMock},
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
