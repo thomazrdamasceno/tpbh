@@ -6,7 +6,7 @@ import { mockImports } from '../shared/ionic-fake/mock.imports';
 import { mockProviders } from '../shared/ionic-fake/mock.providers';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { TestPage } from '../shared/test-page/test-page';
-import { IonCheckbox } from '@ionic/angular';
+import { IonCheckbox, IonSelect } from '@ionic/angular';
 
 describe('SearchPage', () => {
   let component: SearchPage;
@@ -79,10 +79,31 @@ describe('SearchPage', () => {
     
     fixture.detectChanges();
 
-    expect(component.searchOptions.resale).toBeTruthy("resale deve ser true");
-    expect(component.searchOptions.private).toBeTruthy("private seve ser true");
+    expect(page.resale.checked).toBeTruthy("resale deve ser true");
+    expect(page.private.checked).toBeTruthy("private seve ser true");
 
  });
+
+ it("A seleção de ano deve ter a opção 'Todos' ", async()=>{
+ 
+
+  component.ngOnInit();
+  await fixture.whenStable();
+
+  component.searchOptions = {
+    yearMin: 2010,
+    yearMax: 2015
+  };
+
+  fixture.detectChanges();
+  
+  
+  expect(page.yearMin.value).toEqual("", "O valor de yearMin deve ser nulo por padrão");
+  expect(page.yearMax.value).toEqual("", "O valor de yearMax deve ser nulo por padrão");
+
+  
+
+});
   
 
   
@@ -91,6 +112,8 @@ describe('SearchPage', () => {
 
 class SearchTestPage extends TestPage<SearchPage> {
 
+  get yearMin() { return this.query<IonSelect>('.yearMin');}
+  get yearMax() { return this.query<IonSelect>('.yearMax');}
   get resale() { return this.query<IonCheckbox>('.resale');}
   get private() { return this.query<IonCheckbox>('.private');}
   get brand() { return this.query<HTMLElement>('.brand');}

@@ -120,14 +120,16 @@
     <ion-item lines="none" no-margin>
       <ion-icon slot="start" name="calendar"></ion-icon>
       <ion-label position="stacked">Ano mínimo</ion-label>
-      <ion-select cancel-text="Cancelar" (ionChange)="changeYearsFrom(searchOptions.YearsMin)" [(ngModel)]="searchOptions.yearMin"  name="yearMin" placeholder="Selecione">
+      <ion-select  class="yearMin" cancel-text="Cancelar" (ionChange)="changeYearsFrom(searchOptions.YearMin)" [(ngModel)]="searchOptions.yearMin"  name="yearMin" placeholder="Selecione">
+        <ion-select-option  value="">Todos</ion-select-option>
         <ion-select-option *ngFor="let y of yearsFrom" [value]="y">{{y}}</ion-select-option>
       </ion-select>
     </ion-item>
   
    <ion-item slot="end" no-padding lines="none" no-margin>
       <ion-label position="stacked">Ano máximo</ion-label>
-      <ion-select cancel-text="Cancelar" [(ngModel)]="searchOptions.yearMax"  name="yearMax" placeholder="Selecione">
+      <ion-select class="yearMax" cancel-text="Cancelar" [(ngModel)]="searchOptions.yearMax"  name="yearMax" placeholder="Selecione">
+        <ion-select-option  value="">Todos</ion-select-option>
         <ion-select-option *ngFor="let y of yearsTo" [value]="y">{{y}}</ion-select-option>
       </ion-select>
     </ion-item>
@@ -153,11 +155,11 @@
   
   <ion-item margin-bottom>
       <ion-item slot="start" no-margin lines="none">
-        <ion-checkbox class="resale" [(ngModel)]="searchOptions.resale" name="resale"  slot="start" color="primary"></ion-checkbox>
+        <ion-checkbox class="resale" [checked]="searchOptions.resale" [(ngModel)]="searchOptions.resale" name="resale"  slot="start" color="primary"></ion-checkbox>
         <ion-label>Revenda</ion-label>
       </ion-item>
       <ion-item slot="end"  no-margin lines="none">
-        <ion-checkbox class="private" [(ngModel)]="searchOptions.private" slot="start" name="private" color="primary"></ion-checkbox>
+        <ion-checkbox class="private" [checked]="searchOptions.private" [(ngModel)]="searchOptions.private" slot="start" name="private" color="primary"></ion-checkbox>
         <ion-label>Particular</ion-label>
       </ion-item>
    </ion-item>

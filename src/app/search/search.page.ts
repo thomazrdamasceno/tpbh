@@ -25,7 +25,7 @@ export class SearchPage implements OnInit {
   pricesFrom = [];
   pricesTo = [];
   searchForm: FormGroup;
-  constructor(private loadingController: LoadingController, private changeDetector: ChangeDetectorRef,private formBuilder: FormBuilder, private router: Router, private storage: Storage, private af: AngularFirestore) { 
+  constructor(private changeRef: ChangeDetectorRef,private loadingController: LoadingController, private changeDetector: ChangeDetectorRef,private formBuilder: FormBuilder, private router: Router, private storage: Storage, private af: AngularFirestore) { 
 
     this.searchForm = this.formBuilder.group({
       brand: [''],
@@ -68,8 +68,6 @@ export class SearchPage implements OnInit {
          this.brandChange({value: this.searchOptions.brand});
        }
 
-       console.log("searchOptions aqui!!!");
-       console.log(this.searchOptions);
     });
 
     // Preços e anos
