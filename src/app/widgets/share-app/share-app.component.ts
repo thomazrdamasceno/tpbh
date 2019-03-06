@@ -57,9 +57,13 @@ export class ShareAppComponent implements OnInit {
         console.log(response);
       });
     }
+
+    else{
+      let link = share.link+this.messageToShare;
+      window.open(link,"_system");
+    }
    
-    let link = share.link+this.messageToShare;
-    window.open(link,"_system");
+    
   }
 
   closeModal(){
