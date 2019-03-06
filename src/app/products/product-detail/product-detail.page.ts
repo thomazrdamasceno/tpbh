@@ -10,7 +10,6 @@ import { AlgoliaService } from '../../shared/algolia-service/algolia.service';
 import { GoogleAnalyticsService } from '../../shared/analytics/analytics.service';
 import { ShareAppComponent } from '../../widgets/share-app/share-app.component';
 import { Meta, Title } from '@angular/platform-browser';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 declare var FB: any;
 
@@ -42,7 +41,6 @@ export class ProductDetailPage implements OnInit {
   constructor(private toastCtrl: ToastController, private service: ProductsService, private alertController: AlertController,
      private actRoute: ActivatedRoute, private domSanitizer: DomSanitizer,
      private algoliaService: AlgoliaService,
-     private socialSharing: SocialSharing,
      private meta: Meta, private title: Title,
      private analyticsService: GoogleAnalyticsService,
      private changeRef: ChangeDetectorRef,
