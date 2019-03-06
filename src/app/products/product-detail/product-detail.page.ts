@@ -11,6 +11,7 @@ import { GoogleAnalyticsService } from '../../shared/analytics/analytics.service
 import { ShareAppComponent } from '../../widgets/share-app/share-app.component';
 import { Meta, Title } from '@angular/platform-browser';
 
+declare var FB: any;
 
 @Component({
   selector: 'app-product-detail',
@@ -102,6 +103,24 @@ export class ProductDetailPage implements OnInit {
     }
 
     async share(){
+      FB.ui({
+        method: 'share_open_graph',
+        action_type: 'og.shares',
+        display: 'popup',
+        redirect_uri: "https://www.google.com",
+        action_properties: JSON.stringify({
+          object: {
+            'og:title': 'Title to show',
+            'og:description': 'The description',
+            'og:image': 'https://carros.seminovosbh.com.br/bmw-x1-2015-2015-2490529-74410b24ff568d0557a97b792d1329b5d14.jpg'
+          }
+        })
+      }, function(response) {
+        // Action after response
+      });
+      
+
+      /*
 
       let modal = await this.modalController.create({
         component: ShareAppComponent,
@@ -112,6 +131,7 @@ export class ProductDetailPage implements OnInit {
       });
       modal.present();
       
+      */
       
     }
   
