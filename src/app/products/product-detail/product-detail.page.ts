@@ -127,7 +127,7 @@ export class ProductDetailPage implements OnInit {
         console.log(response);
       });
 
-      */
+    
       
 
       /*
