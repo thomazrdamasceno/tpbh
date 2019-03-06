@@ -103,21 +103,33 @@ export class ProductDetailPage implements OnInit {
     }
 
     async share(){
+
+
+      FB.ui({
+        method: 'feed',
+        link: 'https://developers.facebook.com/docs/'
+      }, function(response){});
+      /*
       FB.ui({
         method: 'share_open_graph',
         action_type: 'og.shares',
-        display: 'popup',
-        redirect_uri: "https://www.google.com",
+        redirect_uri: "https://www.topcarsbh.com.br",
+        href: "https://www.topcarsbh.com.br",
+        //mobile_iframe: true,
         action_properties: JSON.stringify({
           object: {
+
             'og:title': 'Title to show',
+            'og:url': "https://www.topcarsbh.com.br",
             'og:description': 'The description',
             'og:image': 'https://carros.seminovosbh.com.br/bmw-x1-2015-2015-2490529-74410b24ff568d0557a97b792d1329b5d14.jpg'
           }
         })
       }, function(response) {
-        // Action after response
+        console.log(response);
       });
+
+      */
       
 
       /*
