@@ -10,6 +10,7 @@ import { AlgoliaService } from '../../shared/algolia-service/algolia.service';
 import { GoogleAnalyticsService } from '../../shared/analytics/analytics.service';
 import { ShareAppComponent } from '../../widgets/share-app/share-app.component';
 import { Meta, Title } from '@angular/platform-browser';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 declare var FB: any;
 
@@ -41,6 +42,7 @@ export class ProductDetailPage implements OnInit {
   constructor(private toastCtrl: ToastController, private service: ProductsService, private alertController: AlertController,
      private actRoute: ActivatedRoute, private domSanitizer: DomSanitizer,
      private algoliaService: AlgoliaService,
+     private socialSharing: SocialSharing,
      private meta: Meta, private title: Title,
      private analyticsService: GoogleAnalyticsService,
      private changeRef: ChangeDetectorRef,
@@ -105,43 +107,17 @@ export class ProductDetailPage implements OnInit {
     async share(){
 
 
-  
-      
-      FB.ui({
-        method: 'share_open_graph',
-        action_type: 'og.shares',
-        redirect_uri: "https://www.topcarsbh.com.br",
-        href: "https://www.topcarsbh.com.br",
-        display: "touch",
-        //mobile_iframe: true,
-        action_properties: JSON.stringify({
-          object: {
-
-            'og:title': 'Title to show',
-            'og:url': "https://www.topcarsbh.com.br",
-            'og:description': 'The description',
-            'og:image': 'https://carros.seminovosbh.com.br/bmw-x1-2015-2015-2490529-74410b24ff568d0557a97b792d1329b5d14.jpg'
-          }
-        })
-      }, function(response) {
-        console.log(response);
-      });
-
-    
-      
-
-      /*
-
       let modal = await this.modalController.create({
         component: ShareAppComponent,
         componentProps: {
           title: 'Compartilhar este APP',
-          messageToShare: document.URL
+          messageToShare: document.URL,
+          item: this.item
         }
       });
       modal.present();
       
-      */
+    
       
     }
   
