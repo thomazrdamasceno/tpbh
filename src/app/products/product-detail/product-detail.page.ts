@@ -243,12 +243,16 @@ export class ProductDetailPage implements OnInit {
 <meta property="og:image" content="http://example.com/image.jpg" />
 <meta property="og:description" content="Descrição da Página" />
 */
+
   setMetaTags(item: any){
     let title = `Topcars BH | ${item.title}`;
+    
+    this.meta.updateTag({ name: 'og:site_name', content: title,  }); 
     this.meta.updateTag({ name: 'og:title', content: title,  }); 
     this.meta.updateTag({ name: 'og:type', content:"website",  }); 
     this.meta.updateTag({ name: 'og:url', content: document.URL }); 
-    this.meta.updateTag({ name: 'og:image', content: item.imgs[0] }); 
+    this.meta.updateTag({ name: 'og:updated_time', content: "1440432930"}); 
+    this.meta.updateTag({ name: 'og:image', content: item.imgs[0], itemprop: "image" }); 
     this.meta.updateTag({ name: 'og:description', content: "Topcars BH, os melhores veículos de Belo Horizonte e região!" });
     this.title.setTitle(title);
   }
