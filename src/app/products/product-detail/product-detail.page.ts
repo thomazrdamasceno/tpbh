@@ -105,16 +105,14 @@ export class ProductDetailPage implements OnInit {
     async share(){
 
 
-      FB.ui({
-        method: 'feed',
-        link: 'https://developers.facebook.com/docs/'
-      }, function(response){});
-      /*
+  
+      
       FB.ui({
         method: 'share_open_graph',
         action_type: 'og.shares',
         redirect_uri: "https://www.topcarsbh.com.br",
         href: "https://www.topcarsbh.com.br",
+        display: "touch",
         //mobile_iframe: true,
         action_properties: JSON.stringify({
           object: {
