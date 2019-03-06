@@ -1,3 +1,11 @@
+<!--
+para o sistema Open Graph
+--> 
+<meta property="og:title" content="Título da página" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.example.com/" />
+<meta property="og:image" content="http://example.com/image.jpg" />
+<meta property="og:description" content="Descrição da Página" />
 <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
@@ -55,7 +63,11 @@
               </div> 
               <ion-button (click)="pswpMultiThumbnail(0)" fill="outline"  expand="block" expand-md="none">
                 <ion-icon color="secondary" slot="start" name="camera"></ion-icon> Visualizar todas as fotos
-              </ion-button>   
+              </ion-button>  
+              
+              <ion-button (click)="share()"   expand="block" expand-md="none">
+                  <ion-icon  slot="start" name="share"></ion-icon> Compartilhar este anúncio
+              </ion-button>
               
               </ion-col>
              

@@ -8,6 +8,7 @@ import { Item } from 'photoswipe';
 import { ToastController, ModalController, AlertController, IonSlides, LoadingController } from '@ionic/angular';
 import { AlgoliaService } from '../../shared/algolia-service/algolia.service';
 import { GoogleAnalyticsService } from '../../shared/analytics/analytics.service';
+import { ShareAppComponent } from '../../widgets/share-app/share-app.component';
 
 
 @Component({
@@ -97,6 +98,21 @@ export class ProductDetailPage implements OnInit {
       // pswp.present({ animate: false });
 
     }
+
+    async share(){
+
+      let modal = await this.modalController.create({
+        component: ShareAppComponent,
+        componentProps: {
+          title: 'Compartilhar este APP',
+          messageToShare: document.URL
+        }
+      });
+      modal.present();
+      
+      
+    }
+  
   ngOnInit() {
 
 
