@@ -16,8 +16,11 @@ para o sistema Open Graph
       </ion-buttons>
       <ion-title>Detalhe do Anúncio</ion-title>
       <ion-buttons slot="end">
+        <ion-button (click)="share()">
+          <ion-icon size="large" name="share"></ion-icon>
+        </ion-button>
         <div *ngIf="item.objectID" class="product-favorite-button">
-              <app-favorite-toggle style="font-size: 29px;" [item]="item" [idProperty]="'objectID'"></app-favorite-toggle>
+              <app-favorite-toggle style="font-size: 32px;" [item]="item" [idProperty]="'objectID'"></app-favorite-toggle>
         </div> 
         
      </ion-buttons>
@@ -81,19 +84,19 @@ para o sistema Open Graph
   
               </ion-item>
   
-              <ion-item color="medium"> 
+              <ion-item lines="none" color="medium"> 
                 <ion-icon color="light" slot="start"  name="car"></ion-icon>
                 <ion-text>Código do veículo: TC{{item.objectID}}</ion-text>
                </ion-item>
 
-              <ion-item color="medium"> 
+              <ion-item lines="none" color="medium"> 
                   <ion-icon color="light" slot="start" name="pin"></ion-icon>
                   <ion-label> {{item.city?.label}} - MG</ion-label>
               </ion-item>
   
-              <ion-item lines="none">
+              <ion-item >
                 <ion-icon color="secondary" slot="start" name="person"></ion-icon>
-                <ion-label>{{item.ownerName}}</ion-label>
+                <ion-label><strong>{{item.ownerName}}</strong></ion-label>
               </ion-item>
               <ion-item *ngFor="let tel of item.tels" lines="full" >
                 <ion-icon  color="secondary" slot="start" name="call"></ion-icon>
