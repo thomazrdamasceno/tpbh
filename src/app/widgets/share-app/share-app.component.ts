@@ -35,13 +35,15 @@ export class ShareAppComponent implements OnInit {
        
       let shareInf = {
         title: `TopcarsBH | ${this.item.title}`,
-        image: this.item.imgs[0]
+        image: this.item.imgs[0],
+        url: `https://topcarsbh.com.br/products/detail/${this.item.objectID}`
       };
       console.log("Informações de compartilhamento: ");
       console.log(shareInf);
       FB.ui({
         method: 'share_open_graph',
         action_type: 'og.shares',
+        href: shareInf.url,
         redirect_uri: document.URL,
         display: "touch",
         //mobile_iframe: true,
