@@ -44,12 +44,13 @@ export class ShareAppComponent implements OnInit {
         method: 'share_open_graph',
         action_type: 'og.shares',
         href: shareInf.url,
-        redirect_uri: document.URL,
+        redirect_uri: shareInf.url,
         display: "touch",
         //mobile_iframe: true,
         action_properties: JSON.stringify({
           object: {
 
+            'og:url': shareInf.url,
             'og:title': shareInf.title,
             'og:description': 'Os melhores veículos de Belo Horizonte e região!',
             'og:image': shareInf.image
