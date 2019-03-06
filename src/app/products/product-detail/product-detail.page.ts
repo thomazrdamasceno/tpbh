@@ -9,6 +9,7 @@ import { ToastController, ModalController, AlertController, IonSlides, LoadingCo
 import { AlgoliaService } from '../../shared/algolia-service/algolia.service';
 import { GoogleAnalyticsService } from '../../shared/analytics/analytics.service';
 import { ShareAppComponent } from '../../widgets/share-app/share-app.component';
+import { Meta, Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -39,6 +40,7 @@ export class ProductDetailPage implements OnInit {
   constructor(private toastCtrl: ToastController, private service: ProductsService, private alertController: AlertController,
      private actRoute: ActivatedRoute, private domSanitizer: DomSanitizer,
      private algoliaService: AlgoliaService,
+     private meta: Meta, private title: Title,
      private analyticsService: GoogleAnalyticsService,
      private changeRef: ChangeDetectorRef,
      private loadingController: LoadingController,
@@ -133,6 +135,7 @@ export class ProductDetailPage implements OnInit {
       }).then((res) => {
 
           this.item = res.hits[0] || {objectID:0};
+          this.setMetaTags(this.item);
           loading.dismiss();
       }).catch(()=>{
         loading.dismiss();
@@ -231,6 +234,23 @@ export class ProductDetailPage implements OnInit {
     });
 
     toast.present();
+  }
+
+  /*
+  <meta property="og:title" content="Título da página" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.example.com/" />
+<meta property="og:image" content="http://example.com/image.jpg" />
+<meta property="og:description" content="Descrição da Página" />
+*/
+  setMetaTags(item: any){
+    let title = `Topcars BH | ${item.title}`;
+    this.meta.updateTag({ name: 'og:title', content: title,  }); 
+    this.meta.updateTag({ name: 'og:type', content:"website",  }); 
+    this.meta.updateTag({ name: 'og:url', content: document.URL }); 
+    this.meta.updateTag({ name: 'og:image', content: item.imgs[0] }); 
+    this.meta.updateTag({ name: 'og:description', content: "Topcars BH, os melhores veículos de Belo Horizonte e região!" });
+    this.title.setTitle(title);
   }
 
 }
