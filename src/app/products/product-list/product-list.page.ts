@@ -203,7 +203,7 @@ export class ProductListPage implements OnInit {
       let brand: string = options.brand.label;
       brand = brand.toLowerCase();
       brand = brand.replace(' ', '-');
-      filters.push(`brand:${options.brand.label}`);
+      filters.push(`brand:${brand}`);
     }
 
     // Ano fabriação
@@ -299,8 +299,12 @@ export class ProductListPage implements OnInit {
 
 
  async toDetail(item: any) {
-
-    this.router.navigateByUrl('/products/detail/' + item.objectID);
+     
+    let loading =  await this.loadingCtrl.create();
+     await loading.present();
+    this.router.navigateByUrl('/veiculo/detalhe/' + item.objectID).then(()=>{
+      loading.dismiss();
+    });
 
 }
 

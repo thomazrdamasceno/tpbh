@@ -17,6 +17,8 @@ export class AlgoliaService {
   constructor() {
 
 
+    console.log("env aqui: ");
+    console.log(environment); 
     this.algoliaClient = algoliasearch(environment.algolia.appId, environment.algolia.apiKey);
     this.algoliaIndex = this.algoliaClient.initIndex('products');
     this.algoliaIndex.setSettings(this.algoliaIndexSetting);

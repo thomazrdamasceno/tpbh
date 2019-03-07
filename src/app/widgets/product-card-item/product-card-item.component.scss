@@ -64,6 +64,26 @@
     right: 5px;
     --ion-color-primary: white!important;
  }
+
+ .sold-container{
+    position:absolute
+ }
+ .sold-text{
+
+   position: absolute;
+   z-index: 100;
+   text-align: center;
+   font-weight: bold;
+   font-size: 49px;
+   border-radius: 5px;
+   bottom: 75px;
+   left: 10%;
+   right: 10%;
+   padding: .2em .5em;
+   background-color: rgba(0, 0, 0, 0.8);
+   color: #fff!important;
+   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+ }
  
  
  

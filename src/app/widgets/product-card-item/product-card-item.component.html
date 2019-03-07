@@ -2,12 +2,15 @@
           <ion-card>
             <ion-card-header class="header-container" no-padding>
                <ion-img class="product-img" [src]="product.imgs[0]"></ion-img>
-                <span class="photo-quantity">
+                <div class="sold-container">
+                  <span *ngIf="product.sold==1" class="sold-text">VENDIDO</span>
+                </div>
+                <span *ngIf="!product.sold==1" class="photo-quantity">
                   <ion-text style="font-size:14px;"> <ion-icon name="camera"  margin-right></ion-icon> {{product.imgs.length}}</ion-text>
                 </span> 
-                <span class="product-price-container"> <span class="product-price-simbol"></span><span class="product-price"> {{product.price|currency:'BRL'}}</span></span>
+                <span *ngIf="!product.sold==1" class="product-price-container"> <span class="product-price-simbol"></span><span class="product-price"> {{product.price|currency:'BRL'}}</span></span>
                
-                <div class="product-favorite-button">
+                <div *ngIf="!product.sold==1" class="product-favorite-button">
                  <app-favorite-toggle [item]="product" [idProperty]="'objectID'"></app-favorite-toggle>
                 </div>
             </ion-card-header>
