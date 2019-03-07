@@ -61,7 +61,7 @@ para o sistema Open Graph
                
         
               <div class="inside-img-container">
-                  <span  *ngIf="!item.sold==1"class="photo-quantity">{{item.imgs.length}} fotos</span>
+                  <span  *ngIf="item.sold!=1"class="photo-quantity">{{item.imgs.length}} fotos</span>
                   <span *ngIf="item.sold==1" class="sold-text">VENDIDO</span>
               </div> 
               <ion-button (click)="pswpMultiThumbnail(0)" fill="outline"  expand="block" expand-md="none">
