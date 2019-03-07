@@ -22,9 +22,9 @@ export const environment = {
   },
 
   algolia: {
-    appId: '9TRJVOFO85',
-    apiKey: '4ccf162100c008f5de529c6de3752633',
-    searchOnlyApiKey: '6db0af6237ad66f173819f9a9a3452bd'
+    appId: 'NJ1U9D7AGE',
+    apiKey: '4396547a9cc8520331b87835363e1e84',
+    searchOnlyApiKey: '08a30b270cb2a503a0b5fda691ed38b4'
   },
 
   firebaseConfig : {

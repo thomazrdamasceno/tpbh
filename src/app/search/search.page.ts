@@ -139,7 +139,7 @@ export class SearchPage implements OnInit {
     this.loading = true;
     this.models = [];
     delete this.searchOptions.model;
-    this.af.collection(`brands/${brand.id}/models`).valueChanges().subscribe((data) => {
+    this.af.collection(`brands/${brand.id}/models`, ref => ref.orderBy("label", "asc")).valueChanges().subscribe((data) => {
 
       this.models  = data;
       this.loading = false;
