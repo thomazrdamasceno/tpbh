@@ -48,7 +48,7 @@ para o sistema Open Graph
           <ion-icon slot="end" name="search"></ion-icon>
         </ion-button>
      </div>
-    <div [hidden]="!item.objectID">
+    <div *ngIf="item.objectID">
            <ion-grid>
              <ion-row>
                <ion-col  size="12" size-md="6">
