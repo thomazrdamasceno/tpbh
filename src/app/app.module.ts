@@ -31,6 +31,8 @@ import 'codemirror/mode/markdown/markdown';
 import { GoogleAnalyticsService } from './shared/analytics/analytics.service';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { AlgoliaService } from './shared/algolia-service/algolia.service';
+import { AlgoliaServiceStub } from './shared/algolia-service/algolia.service.stub';
 
 registerLocaleData(localePt, "pt-BR");
 
@@ -66,6 +68,7 @@ registerLocaleData(localePt, "pt-BR");
     {provide: LOCALE_ID, useValue: 'pt-BR'},
     // {provide: AngularFireAuth, useClass: FireAuthStub},
     // {provide: AngularFirestore, useClass: FirestoreMock},
+    //{ provide: AlgoliaService, useClass: AlgoliaServiceStub },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   declarations: [AppComponent],

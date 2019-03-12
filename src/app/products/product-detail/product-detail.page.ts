@@ -22,6 +22,10 @@ export class ProductDetailPage implements OnInit {
 
   @ViewChild('slides') slides: IonSlides;
 
+  @ViewChild('similarProductsSlides') similarProductsSlides: IonSlides;
+
+  similarProducts = [];
+  
   slideOpts = {
 
     pagination: {
@@ -123,6 +127,9 @@ export class ProductDetailPage implements OnInit {
 
 
 
+    //Configuração do slide de similares
+  
+
     this.actRoute.paramMap.subscribe(async data => {
       let id = data.get('id');
       //Correção do id
@@ -139,7 +146,18 @@ export class ProductDetailPage implements OnInit {
       }).then((res) => {
 
           this.item = res.hits[0] || {objectID:0};
+
+          //tags referentes ao veículo
           this.setMetaTags(this.item);
+
+          //Recuperação dos itens similares
+          this.algoliaService.search({
+            filters: `NOT objectID: ${id} AND brand:${this.item.brand} AND model: ${this.item.model}`
+          }).then((res)=>{
+
+            this.similarProducts = res.hits;
+          });
+         
           loading.dismiss();
       }).catch(()=>{
         loading.dismiss();

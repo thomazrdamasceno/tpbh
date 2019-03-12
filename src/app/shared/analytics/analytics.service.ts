@@ -16,7 +16,9 @@ export class GoogleAnalyticsService {
       storage: 'none',    ​
       trackingId: id,    ​
       clientId: localStorage.getItem('ga:clientId')
-    });    ​
+    });  
+    var dimensionValue = 'DIMENSAO_TESTE';
+    ga('set', 'dimension1', dimensionValue);  ​
     ga('set', 'checkProtocolTask', null);​
     ga('set', 'transportUrl', 'https://www.google-analytics.com/collect');
     ga(function(tracker) {

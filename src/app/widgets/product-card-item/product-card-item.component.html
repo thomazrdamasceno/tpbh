@@ -8,7 +8,7 @@
                 <span *ngIf="product.sold!=1" class="photo-quantity">
                   <ion-text style="font-size:14px;"> <ion-icon name="camera"  margin-right></ion-icon> {{product.imgs.length}}</ion-text>
                 </span> 
-                <span *ngIf="product.sold!=1" class="product-price-container"> <span class="product-price-simbol"></span><span class="product-price"> {{product.price|currency:'BRL'}}</span></span>
+                <span *ngIf="product.sold!=1 && product.price" class="product-price-container"> <span class="product-price-simbol"></span><span class="product-price"> {{product.price|currency:'BRL'}}</span></span>
                
                 <div *ngIf="product.sold!=1" class="product-favorite-button">
                  <app-favorite-toggle [item]="product" [idProperty]="'objectID'"></app-favorite-toggle>

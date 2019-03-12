@@ -1,9 +1,11 @@
 {
   "compileOnSave": false,
+ // "files": ["/node_modules/p3x-angular-compile/src/CompileAttribute.ts", "/node_modules/p3x-angular-compile/src/CompileModule.ts"],
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
+
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -11,6 +13,8 @@
     "lib": [
       "es2017",
       "dom"
-    ]
-  }
+    ],
+    
+  },
+  
 }

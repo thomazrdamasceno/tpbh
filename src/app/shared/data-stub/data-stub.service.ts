@@ -8,6 +8,8 @@ import { ordersDataData } from './orders-data/orders-data';
 
 export const enum SetOrUpdateMode { SET = 1, UPDATE = 2 }
 
+const ID_ATTR = "objectID";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,7 +40,7 @@ export class DataStubService {
 
 
 
-    const id = object.id;
+    const id = object[ID_ATTR];
     const value = object;
 
     console.log('nvs: ');
@@ -52,27 +54,27 @@ export class DataStubService {
         break;
 
       case 1:
-        this.data[nvs[0]][id] = value;
+        this.data[nvs[0]][ID_ATTR] = value;
         break;
 
       case 2:
         this.data[nvs[0]] = this.data[nvs[0]] || {};
-        this.data[nvs[0]][nvs[1]][id] = value;
+        this.data[nvs[0]][nvs[1]][ID_ATTR] = value;
         break;
 
       case 3:
         this.data[nvs[0]][nvs[1]] = this.data[nvs[0]][nvs[1]] || {};
-        this.data[nvs[0]][nvs[1]][nvs[2]][id] = value;
+        this.data[nvs[0]][nvs[1]][nvs[2]][ID_ATTR] = value;
         break;
 
       case 4:
         this.data[nvs[0]][nvs[1]][nvs[2]] || this.data[nvs[0]][nvs[1]][nvs[2]] || {};
-        this.data[nvs[0]][nvs[1]][nvs[2]][nvs[3]][id] = value;
+        this.data[nvs[0]][nvs[1]][nvs[2]][nvs[3]][ID_ATTR] = value;
         break;
 
       case 5:
         this.data[nvs[0]][nvs[1]][nvs[2]][nvs[3]] = this.data[nvs[0]][nvs[1]][nvs[2]][nvs[3]] || {};
-        this.data[nvs[0]][nvs[1]][nvs[2]][nvs[3]][nvs[4]][id] = value;
+        this.data[nvs[0]][nvs[1]][nvs[2]][nvs[3]][nvs[4]][ID_ATTR] = value;
         break;
 
     }

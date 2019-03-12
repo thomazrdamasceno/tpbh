@@ -11,10 +11,18 @@ export class AlgoliaServiceStub {
      }
     search(queryParams: algoliasearch.QueryParameters) {
 
-        const promise = new Promise((resolve) => {
+        let promise = new Promise((resolve) => {
           setTimeout(() => {
-            const items  = this.dataStubService.getArray('products');
-            resolve(items);
+
+            let  items  = this.dataStubService.getArray('products');
+           
+            let data = {
+              nbHits: items.length,
+              hits: items
+            }
+            console.log("Itens recuperados no algoliaServiceStub ");
+            console.log(data);
+            resolve(data);
           }, 300);
 
 
@@ -22,5 +30,6 @@ export class AlgoliaServiceStub {
 
         return promise;
     }
+    
 
 }

@@ -80,7 +80,8 @@ para o sistema Open Graph
   
               </ion-item>
               <ion-item lines="none" >
-                <ion-text class="product-price">{{item.price|currency: 'BRL'}}</ion-text>
+                <ion-text *ngIf="!item.price">Valor à combinar</ion-text>
+                <ion-text *ngIf="item.price" class="product-price">{{item.price|currency: 'BRL'}}</ion-text>
   
               </ion-item>
   
@@ -134,6 +135,15 @@ para o sistema Open Graph
        <p>{{item.comments}}</p>
      </ion-text>  
    </ion-item>
+
+   <div *ngIf="similarProducts.length>0">
+      <p><strong>Veículos similares</strong></p>
+      <ion-slides [options]="{slidesPerView:2}" #similarProductsSlides pager="true">
+          <ion-slide  *ngFor="let prod of similarProducts;  let pos = index" routerLink="/products/detail/{{prod.objectID}}" >
+              <app-product-thumb-item [item]="prod"></app-product-thumb-item>
+          </ion-slide>
+      </ion-slides>
+   </div>
      
    
      

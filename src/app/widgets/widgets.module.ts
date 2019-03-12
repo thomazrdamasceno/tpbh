@@ -16,6 +16,8 @@ import { ScrollHideDirective } from './scroll-hide/scroll-hide.directive';
 import { ProductCardItemComponent } from './product-card-item/product-card-item.component';
 import { VarDirective } from '../lazy-widgets/var/var.directive';
 import { ShareAppComponent } from './share-app/share-app.component';
+import { ProductSlideItemComponent } from './product-slide-item/product-slide-item.component';
+import { ProductThumbItemComponent } from './product-thumb-item/product-thumb-item.component';
 
 @NgModule({
   imports: [
@@ -38,7 +40,9 @@ import { ShareAppComponent } from './share-app/share-app.component';
     ImageSelectComponent,
     ProductCardItemComponent,
     ProgressBarComponent,
-    ShareAppComponent],
+    ShareAppComponent,
+    ProductSlideItemComponent,
+    ProductThumbItemComponent],
   exports: [
     ScrollHideDirective,
     IonicModule,
@@ -55,7 +59,8 @@ import { ShareAppComponent } from './share-app/share-app.component';
     ImageSelectComponent,
     ProgressBarComponent,
     ProductCardItemComponent,
-    ShareAppComponent
+    ShareAppComponent,
+    ProductThumbItemComponent
   ]
 })
 export class WidgetsModule { }
