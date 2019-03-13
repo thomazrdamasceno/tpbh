@@ -13,6 +13,13 @@ import { Meta, Title } from '@angular/platform-browser';
 
 declare var FB: any;
 
+
+const similarGroups = {
+  "palio,uno,gol,ka,up": true,
+  "onix,hb20,fox,sandero,fiesta": true,
+  "focus,punto,golf,cruze-hatch,bravo":true
+}
+
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.page.html',
@@ -24,15 +31,16 @@ export class ProductDetailPage implements OnInit {
 
   @ViewChild('similarProductsSlides') similarProductsSlides: IonSlides;
 
-  similarProducts = [];
-  
+
+  similarByCategory = [];
+
   slideOpts = {
 
     pagination: {
-    renderBullet: function (index, className) {
-      return '<span class="' + className + '">' + (index + 1) + '</span>';
-    },
-  }
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '">' + (index + 1) + '</span>';
+      },
+    }
   };
 
 
@@ -43,92 +51,92 @@ export class ProductDetailPage implements OnInit {
   quantity = 1;
 
   constructor(private toastCtrl: ToastController, private service: ProductsService, private alertController: AlertController,
-     private actRoute: ActivatedRoute, private domSanitizer: DomSanitizer,
-     private algoliaService: AlgoliaService,
-     private meta: Meta, private title: Title,
-     private analyticsService: GoogleAnalyticsService,
-     private changeRef: ChangeDetectorRef,
-     private loadingController: LoadingController,
-     private modalController: ModalController
-     ) { }
+    private actRoute: ActivatedRoute, private domSanitizer: DomSanitizer,
+    private algoliaService: AlgoliaService,
+    private meta: Meta, private title: Title,
+    private analyticsService: GoogleAnalyticsService,
+    private changeRef: ChangeDetectorRef,
+    private loadingController: LoadingController,
+    private modalController: ModalController
+  ) { }
 
 
-     nextSlide() {
-      this.slides.slideNext();
-    }
-
-    prevSlide() {
-      this.slides.slidePrev();
-    }
-
-    async pswpMultiThumbnail(index: number): Promise<void> {
-
-
-     const photoswipeItems: Array<Item> = [];
-
-
-  for (const img of this.item.imgs) {
-
-
-    photoswipeItems.push({
-      h: 900,
-      src: img,
-      w: 1200
-    });
+  nextSlide() {
+    this.slides.slideNext();
   }
 
+  prevSlide() {
+    this.slides.slidePrev();
+  }
+
+  async pswpMultiThumbnail(index: number): Promise<void> {
 
 
-
-      const options: PhotoswipeOptions = {
-        index: index,
-        history: false,
-        shareEl: false,
-        closeEl: true,
-
-        clickToCloseNonZoomable: false,
-        showHideOpacity: true
-      };
+    const photoswipeItems: Array<Item> = [];
 
 
+    for (const img of this.item.imgs) {
 
 
-     const modal = await this.modalController.create({
-           component: HeilbaumPhotoswipeComponent,
-           componentProps: {items: photoswipeItems, options: options}
-
+      photoswipeItems.push({
+        h: 900,
+        src: img,
+        w: 1200
       });
-      modal.present();
-
-
-      // this.pswpCtrl.create(photoswipeItems, options).present();
-      // pswp.present({ animate: false });
-
     }
 
-    async share(){
 
 
-      let modal = await this.modalController.create({
-        component: ShareAppComponent,
-        componentProps: {
-          title: 'Compartilhar este APP',
-          messageToShare: document.URL,
-          item: this.item
-        }
-      });
-      modal.present();
-      
-    
-      
-    }
-  
+
+    const options: PhotoswipeOptions = {
+      index: index,
+      history: false,
+      shareEl: false,
+      closeEl: true,
+
+      clickToCloseNonZoomable: false,
+      showHideOpacity: true
+    };
+
+
+
+
+    const modal = await this.modalController.create({
+      component: HeilbaumPhotoswipeComponent,
+      componentProps: { items: photoswipeItems, options: options }
+
+    });
+    modal.present();
+
+
+    // this.pswpCtrl.create(photoswipeItems, options).present();
+    // pswp.present({ animate: false });
+
+  }
+
+  async share() {
+
+
+    let modal = await this.modalController.create({
+      component: ShareAppComponent,
+      componentProps: {
+        title: 'Compartilhar este APP',
+        messageToShare: document.URL,
+        item: this.item
+      }
+    });
+    modal.present();
+
+
+
+  }
+
   ngOnInit() {
 
 
 
     //Configuração do slide de similares
-  
+
 
     this.actRoute.paramMap.subscribe(async data => {
       let id = data.get('id');
@@ -145,21 +153,18 @@ export class ProductDetailPage implements OnInit {
         filters: `objectID: ${id}`
       }).then((res) => {
 
-          this.item = res.hits[0] || {objectID:0};
+        this.item = res.hits[0] || { objectID: 0 };
 
-          //tags referentes ao veículo
-          this.setMetaTags(this.item);
+        //Similares por categoria
+        this.setSimilars(this.item);
 
-          //Recuperação dos itens similares
-          this.algoliaService.search({
-            filters: `NOT objectID: ${id} AND brand:${this.item.brand} AND model: ${this.item.model}`
-          }).then((res)=>{
+        //tags referentes ao veículo
+        this.setMetaTags(this.item);
 
-            this.similarProducts = res.hits;
-          });
-         
-          loading.dismiss();
-      }).catch(()=>{
+        
+
+        loading.dismiss();
+      }).catch(() => {
         loading.dismiss();
       });
 
@@ -169,22 +174,22 @@ export class ProductDetailPage implements OnInit {
 
   openCall(tel: string) {
 
-   
+
 
     window.open(`tel: ${tel}`);
 
-     // Registro do evento
+    // Registro do evento
 
-    
-     this.analyticsService.trackEvent('call-open', {
+
+    this.analyticsService.trackEvent('call-open', {
       category: 'activation'
     });
-    
+
   }
 
   sendWhatsapp() {
 
-    
+
 
     let number = this.item.whatsappTel;
     number = number.replace('(', '');
@@ -193,7 +198,7 @@ export class ProductDetailPage implements OnInit {
     number = number.replace(' ', '');
     number = '55' + number;
 
-    window.open(`https://api.whatsapp.com/send?phone=${number}`,"_system");
+    window.open(`https://api.whatsapp.com/send?phone=${number}`, "_system");
 
     // Registro do evento
 
@@ -201,7 +206,38 @@ export class ProductDetailPage implements OnInit {
       category: 'activation'
     });
 
-  
+
+
+  }
+
+  setSimilars(item:any){
+     let arrayModels =  [];
+     for(let key in similarGroups){
+             if(key.indexOf(item.model)!=-1){
+               arrayModels = key.split(",");
+               
+               break;
+             }
+     }
+
+     console.log("array de modelos: ");
+     console.log(arrayModels);
+     if(arrayModels.length==0){
+      return;
+     }
+     let querys = [];
+     for(let model of arrayModels){
+         
+      querys.push(`model: ${model}`);
+     }
+     let queryString  = querys.join(" OR ");
+
+     this.algoliaService.search({
+       attributesToRetrieve: ["imgs", "title", "km", "price"],
+       filters: `NOT objectID: ${item.objectID} AND `+ queryString
+     }).then((res)=>{
+        this.similarByCategory = res.hits;
+     });
 
   }
 
@@ -258,23 +294,17 @@ export class ProductDetailPage implements OnInit {
     toast.present();
   }
 
-  /*
-  <meta property="og:title" content="Título da página" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://www.example.com/" />
-<meta property="og:image" content="http://example.com/image.jpg" />
-<meta property="og:description" content="Descrição da Página" />
-*/
+  
 
-  setMetaTags(item: any){
+  setMetaTags(item: any) {
     let title = `Topcars BH | ${item.title}`;
-    
-    this.meta.updateTag({ name: 'og:site_name', content: title,  }); 
-    this.meta.updateTag({ name: 'og:title', content: title,  }); 
-    this.meta.updateTag({ name: 'og:type', content:"website",  }); 
-    this.meta.updateTag({ name: 'og:url', content: document.URL }); 
-    this.meta.updateTag({ name: 'og:updated_time', content: "1440432930"}); 
-    this.meta.updateTag({ name: 'og:image', content: item.imgs[0], itemprop: "image" }); 
+
+    this.meta.updateTag({ name: 'og:site_name', content: title, });
+    this.meta.updateTag({ name: 'og:title', content: title, });
+    this.meta.updateTag({ name: 'og:type', content: "website", });
+    this.meta.updateTag({ name: 'og:url', content: document.URL });
+    this.meta.updateTag({ name: 'og:updated_time', content: "1440432930" });
+    this.meta.updateTag({ name: 'og:image', content: item.imgs[0], itemprop: "image" });
     this.meta.updateTag({ name: 'og:description', content: "Topcars BH, os melhores veículos de Belo Horizonte e região!" });
     this.title.setTitle(title);
   }

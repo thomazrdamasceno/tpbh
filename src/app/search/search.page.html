@@ -33,7 +33,7 @@
     
 
     <ion-item lines="full" margin-bottom *ngIf="brands.length>0">
-        <ion-icon slot="start" name="car"></ion-icon>
+        <ion-icon color="secondary" slot="start" name="car"></ion-icon>
         <ion-label>
          Escolha uma marca
         </ion-label>
@@ -61,7 +61,7 @@
         </ion-item>
 
         <ion-item lines="full" margin-bottom *ngIf="searchOptions.brand && models?.length>0" >
-            <ion-icon slot="start" name="car"></ion-icon>
+            <ion-icon color="secondary" slot="start" name="car"></ion-icon>
             <ion-label>
               Escolha um modelo
             </ion-label>
@@ -202,7 +202,7 @@
    
     <ion-toolbar>
       <ion-button (click)="search()" fill="clear" color="light" expand="block">
-        Buscar
+        Ver anúncios
         <ion-icon color="secondary" slot="end" name="search"></ion-icon>
       </ion-button>
   </ion-toolbar>

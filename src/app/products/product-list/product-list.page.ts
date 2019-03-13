@@ -13,6 +13,7 @@ import { Storage } from '@ionic/storage';
 import { RoutingStateService } from '../../shared/routing-state/routing-state.service';
 import * as algoliasearch from 'algoliasearch';
 import { AppUtil } from '../../shared/app-util/app-util.service';
+import { GoogleAnalyticsService } from '../../shared/analytics/analytics.service';
 
 
 @Component({
@@ -51,6 +52,7 @@ export class ProductListPage implements OnInit {
     private loadingCtrl: LoadingController,
     private appUtil: AppUtil,
     private storage: Storage,
+    private gaService: GoogleAnalyticsService,
     private routingState: RoutingStateService,
     private algoliaService: AlgoliaService,
    ) {
@@ -172,6 +174,13 @@ export class ProductListPage implements OnInit {
     options.colors = options.colors || [];
     const colorsQuerys = [];
     const otherQuerys = [];
+
+    //Dimensões
+    if(options.brand)
+    this.gaService.setDimension(1, options.brand);
+
+    if(options.model)
+    this.gaService.setDimension(2, options.model);
 
 
     // Particular e revenda

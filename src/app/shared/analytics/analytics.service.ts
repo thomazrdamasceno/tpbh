@@ -17,8 +17,7 @@ export class GoogleAnalyticsService {
       trackingId: id,    ​
       clientId: localStorage.getItem('ga:clientId')
     });  
-    var dimensionValue = 'DIMENSAO_TESTE';
-    ga('set', 'dimension1', dimensionValue);  ​
+   
     ga('set', 'checkProtocolTask', null);​
     ga('set', 'transportUrl', 'https://www.google-analytics.com/collect');
     ga(function(tracker) {
@@ -26,6 +25,10 @@ export class GoogleAnalyticsService {
         localStorage.setItem( 'ga:clientId', tracker.get('clientId') );
       }
     });
+  }
+
+  setDimension(index, value){
+    ga('set', 'dimension'+index, value);  ​
   }
   trackView(screenName) {
     console.log(screenName);
