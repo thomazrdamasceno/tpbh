@@ -1,3 +1,6 @@
+
+
+/*
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductThumbItemComponent } from './product-thumb-item.component';
@@ -23,3 +26,6 @@ describe('ProductThumbItemComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+*/

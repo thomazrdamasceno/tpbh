@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { PrototypeRemoteViewPage } from './prototype-remote-view.page';
-import { CompileModule } from 'p3x-angular-compile';
+import { WidgetsModule } from '../../widgets/widgets.module';
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    //CompileModule,
+    WidgetsModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes)

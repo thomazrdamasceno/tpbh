@@ -12,7 +12,7 @@ export class AlgoliaService {
   algoliaIndexSetting: algoliasearch.IndexSettings = {
     attributesForFaceting:[
       "approved","brand","model","color","privateType","resaleType", "ultraLowKM","yearManufacture", "yearModel", "price"
-    ]
+    ],
   };
   constructor() {
 
@@ -38,7 +38,7 @@ export class AlgoliaService {
 
     if (index) {
       this.algoliaIndex = this.algoliaClient.initIndex(index);
-      this.algoliaIndex.setSettings(this.algoliaIndexSetting);
+      this.algoliaIndex.setSettings( this.algoliaIndexSetting);
     }
 
     console.log('parametros do algolia: ');

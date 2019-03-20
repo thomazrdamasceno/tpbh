@@ -13,6 +13,21 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
+.sc-ion-searchbar-ios-h {
+    --clear-button-color: #f3ecec;
+    --cancel-button-color: var(--ion-color-primary,#3880ff);
+    --color: #fffefe;
+    --icon-color: #fff;
+    --background: rgba(var(--ion-text-color-rgb,0,0,0),0.07);
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    height: 60px;
+    contain: strict;
+}
+
+
 
 /* Ajuste da imagem no PhotoSwipe*/
 .pswp__img{

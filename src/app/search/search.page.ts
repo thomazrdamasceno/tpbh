@@ -6,6 +6,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { componentFactoryName } from '@angular/compiler';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { AlgoliaService } from '../shared/algolia-service/algolia.service';
 
 @Component({
   selector: 'app-search',
@@ -25,7 +26,7 @@ export class SearchPage implements OnInit {
   pricesFrom = [];
   pricesTo = [];
   searchForm: FormGroup;
-  constructor(private changeRef: ChangeDetectorRef,private loadingController: LoadingController, private changeDetector: ChangeDetectorRef,private formBuilder: FormBuilder, private router: Router, private storage: Storage, private af: AngularFirestore) { 
+  constructor(private algolia: AlgoliaService, private changeRef: ChangeDetectorRef,private loadingController: LoadingController, private changeDetector: ChangeDetectorRef,private formBuilder: FormBuilder, private router: Router, private storage: Storage, private af: AngularFirestore) { 
 
     this.searchForm = this.formBuilder.group({
       brand: [''],
@@ -59,6 +60,8 @@ export class SearchPage implements OnInit {
   ngOnInit() {
 
    
+
+
     
     // Busca salva no localStorage
     this.storage.get('searchOptions').then((options) => {
@@ -75,6 +78,8 @@ export class SearchPage implements OnInit {
     this.yearsTo = this.getYearsOptions(1930);
     this.pricesFrom = this.getPricesOptions(5000);
     this.pricesTo = this.getPricesOptions(5000);
+
+
 
     // Marcas
     this.loading = true;

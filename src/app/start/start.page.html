@@ -9,7 +9,7 @@
     </ion-toolbar>  
  </ion-header>
    
- <ion-content [hidden]="showPage!=true" padding>
+ <ion-content *ngIf="showPage==true" padding>
   <ion-grid>
   <ion-row justify-content-center align-items-center>
     
@@ -17,21 +17,22 @@
     
   </ion-row>  
  </ion-grid> 
- <h2 class="text-center">
+ <h2 class="text-center welcome-message">
     <ion-text color="primary">
      Seja Bem vindo ao TopCarsBH!
     </ion-text>
  </h2>
+ <p class="text-center">
+  <ion-text color="medium">
+    Os melhores veículos de Belo Horizonte e região!
+  </ion-text>
+</p>
  <h4 class="text-center">
     <ion-text color="medium">
-      Mais de <strong>{{totalResults}}</strong> veículos cadastrados!
+     <strong>{{totalResults}}</strong> veículos cadastrados no momento!
     </ion-text>
   </h4>
-   <p class="text-center">
-    <ion-text color="medium">
-      Aqui você encontrará os melhores veículos de Belo Horizonte e região!
-    </ion-text>
- </p>
+  
  
  
  
@@ -39,4 +40,16 @@
      Buscar veículos
    <ion-icon slot="end" name="search"></ion-icon>
  </ion-button>
+
+ <div class="destaques">
+  <p><strong>Principais destaques</strong></p>
+  <ion-slides [options]="{slidesPerView:2}"  pager="true">
+      <ion-slide   *ngFor="let prod of destaques1;  let pos = index" routerLink="/products/detail/{{prod.objectID}}" >
+          <app-product-thumb-item class="destaque" [item]="prod"></app-product-thumb-item>
+      </ion-slide>
+  </ion-slides>
+
+ 
+
+</div>
 </ion-content>

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button color="light"></ion-menu-button>
        <ion-button>
-             <ion-icon  color="light" style="font-size: 85px" src="/assets/logo.svg"></ion-icon>
+             <ion-icon  color="light" style="font-size: 75px" src="/assets/logo.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
     
@@ -87,16 +87,21 @@
             </ion-item>
   
           
-<div>         
+<div>   
+<h3 padding class="text-center">
+        <ion-text color="medium" style="font-size:19px">
+         Filtros avançados (opcional)
+        </ion-text>
+      </h3>       
 <ion-item margin-bottom>
     <ion-icon slot="start" name="car"></ion-icon>
-    <ion-label position="stacked">Digite a versão</ion-label>
+    <ion-label position="stacked">Versão do modelo</ion-label>
 	<ion-input [(ngModel)]="searchOptions.version" name="version" placeholder="Ex: GLS 2.0"></ion-input>
 </ion-item>
 
 <ion-item margin-bottom>
     <ion-icon slot="start" name="color-palette"></ion-icon>
-    <ion-label position="stacked">Cores</ion-label>
+    <ion-label >Cores</ion-label>
     <ion-select [(ngModel)]="searchOptions.colors" name="color"  multiple="true">
       <ion-select-option value="Prata">Prata</ion-select-option>
       <ion-select-option value="Preto">Preto</ion-select-option>

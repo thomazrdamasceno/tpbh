@@ -1,9 +1,8 @@
 
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { ProductsService } from '../shared/products.service';
 import { ActivatedRoute } from '@angular/router';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { PhotoswipeOptions, PhotoswipeItem, HeilbaumPhotoswipeComponent } from '../../lazy-widgets/photoswipe';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { PhotoswipeOptions, HeilbaumPhotoswipeComponent } from '../../lazy-widgets/photoswipe';
 import { Item } from 'photoswipe';
 import { ToastController, ModalController, AlertController, IonSlides, LoadingController } from '@ionic/angular';
 import { AlgoliaService } from '../../shared/algolia-service/algolia.service';
@@ -36,11 +35,7 @@ export class ProductDetailPage implements OnInit {
 
   slideOpts = {
 
-    pagination: {
-      renderBullet: function (index, className) {
-        return '<span class="' + className + '">' + (index + 1) + '</span>';
-      },
-    }
+    
   };
 
 
@@ -50,12 +45,11 @@ export class ProductDetailPage implements OnInit {
   videoUrl: SafeResourceUrl;
   quantity = 1;
 
-  constructor(private toastCtrl: ToastController, private service: ProductsService, private alertController: AlertController,
-    private actRoute: ActivatedRoute, private domSanitizer: DomSanitizer,
+  constructor(private toastCtrl: ToastController, private alertController: AlertController,
+    private actRoute: ActivatedRoute,
     private algoliaService: AlgoliaService,
     private meta: Meta, private title: Title,
     private analyticsService: GoogleAnalyticsService,
-    private changeRef: ChangeDetectorRef,
     private loadingController: LoadingController,
     private modalController: ModalController
   ) { }
@@ -139,7 +133,8 @@ export class ProductDetailPage implements OnInit {
 
 
     this.actRoute.paramMap.subscribe(async data => {
-      let id = data.get('id');
+      let id = data.get('id') || "";
+
       //Correção do id
 
       id = id.replace("t", "");
@@ -274,7 +269,6 @@ export class ProductDetailPage implements OnInit {
               this.showErrorToast('Você deve inserir uma quantidade válida');
             } else {
               this.quantity = data.quantity;
-              this.changeRef.detectChanges();
             }
           }
         }

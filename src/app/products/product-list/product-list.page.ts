@@ -161,7 +161,10 @@ export class ProductListPage implements OnInit {
 
       filters: this.getFilters(),
       page: this.page,
-      hitsPerPage: 30
+      attributesToRetrieve:["objectID","city","resaleType","privateType","title","price","imgs","km", "yearManufacture", "yearModel","color"],
+      hitsPerPage: 30,
+
+      distinct: false
     };
 
     return algoliaOptions;

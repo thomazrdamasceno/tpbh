@@ -33,6 +33,7 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { AlgoliaService } from './shared/algolia-service/algolia.service';
 import { AlgoliaServiceStub } from './shared/algolia-service/algolia.service.stub';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 registerLocaleData(localePt, "pt-BR");
 
@@ -49,6 +50,8 @@ registerLocaleData(localePt, "pt-BR");
     IonicModule.forRoot(),
     AppRoutingModule,
     WidgetsModule,
+    IonicSelectableModule,
+
     AngularFireMessagingModule,
     HeilbaumPhotoswipeModule,
     IonicStorageModule.forRoot(),

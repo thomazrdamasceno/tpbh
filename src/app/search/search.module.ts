@@ -18,9 +18,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    IonicSelectableModule,
     ReactiveFormsModule,
     FormsModule,
+    IonicSelectableModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],

@@ -51,6 +51,6 @@ export const mockProviders: Provider[] = [
     {provide: AngularFireAuth, useClass: FireAuthStub},
     {provide: AlertController, useValue: new AlertControllerMock()},
     {provide: ToastController, useValue: new ToastControllerMock()},
-    {provide: LoadingController, useValue: new LoadingControllerMock()},
+    {provide: LoadingController, useValue: LoadingControllerMock.instance()},
     {provide: Platform, useValue: new PlatformMock()}
 ];

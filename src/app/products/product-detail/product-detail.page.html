@@ -19,7 +19,7 @@ para o sistema Open Graph
         <ion-button (click)="share()">
           <ion-icon size="large" name="share"></ion-icon>
         </ion-button>
-        <div *ngIf="item.objectID" class="product-favorite-button">
+        <div *ngIf="item && item.objectID" class="product-favorite-button">
               <app-favorite-toggle style="font-size: 32px;" [item]="item" [idProperty]="'objectID'"></app-favorite-toggle>
         </div> 
         
@@ -28,9 +28,9 @@ para o sistema Open Graph
   </ion-header>
   
   
-  <ion-content no-margin>
+  <ion-content>
     <!--Item inexistente-->
-    <div padding *ngIf="item.objectID==0">
+    <div padding *ngIf="item.objectID==0" class="product-not-found">
       <ion-grid no-margin>
           <ion-row justify-content-center align-items-center>
             

@@ -5,9 +5,12 @@
     "baseUrl": "./",
     "module": "es2015"
   },
+
+  //"include": ["../node_modules/p3x-angular-compile/src/CompileModule.ts"],
+  
   "exclude": [
     "test.ts",
-    "/node_modules/p3x-angular-compile/src/CompileModule.ts",
+   
     "**/*.spec.ts"
   ]
 }
