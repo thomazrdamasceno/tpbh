@@ -14,7 +14,7 @@ para o sistema Open Graph
            </ion-button>
            <ion-menu-button color="light"></ion-menu-button>
       </ion-buttons>
-      <ion-title>Detalhe do Anúncio</ion-title>
+      <ion-title>Detalhes</ion-title>
       <ion-buttons slot="end">
         <ion-button (click)="share()">
           <ion-icon size="large" name="share"></ion-icon>
@@ -49,15 +49,11 @@ para o sistema Open Graph
         </ion-button>
      </div>
     <div *ngIf="item.objectID">
-           <ion-grid no-margin>
-             <ion-row no-margin>
-               <ion-col  size="12" size-md="6" no-margin>
-              <ion-slides pager="false" #slides>
+           <ion-slides pager="false" #slides>
                   <ion-slide *ngFor="let img of item.imgs;  let pos = index" (click)="pswpMultiThumbnail(pos)" >
                        <img class="product-img"  [src]="img" />
                    </ion-slide>
-                  
-               </ion-slides>
+            </ion-slides>
                
         
               <div class="inside-img-container">
@@ -71,10 +67,6 @@ para o sistema Open Graph
               <ion-button fill="outline" (click)="share()"   expand="block" expand-md="none">
                   <ion-icon  slot="start" name="share"></ion-icon> Compartilhar este anúncio
               </ion-button>
-              
-              </ion-col>
-             
-             <ion-col size="12" size-md="6">
               <ion-item>
                 <ion-text class="product-title">{{item.title}}</ion-text>
   
@@ -85,10 +77,12 @@ para o sistema Open Graph
   
               </ion-item>
   
+              <!--
               <ion-item lines="none" color="medium"> 
                 <ion-icon color="light" slot="start"  name="car"></ion-icon>
                 <ion-text>Código do veículo: TC{{item.objectID}}</ion-text>
                </ion-item>
+              --> 
 
               <ion-item lines="none" color="medium"> 
                   <ion-icon color="light" slot="start" name="pin"></ion-icon>
@@ -103,15 +97,13 @@ para o sistema Open Graph
                 <ion-icon  color="secondary" slot="start" name="call"></ion-icon>
                 <ion-label>{{tel}}</ion-label>
               </ion-item>
-              </ion-col>
-              </ion-row>
-             </ion-grid>
              
-           
       
-   <div padding>  
-   <p><strong>Informações</strong></p>
-   <ion-item color="medium"> 
+   <div>  
+   
+   <div class="info-content"> 
+    
+    <h3><strong>Informações</strong></h3>
     <ion-label>
      <p><strong>Ano:</strong> {{item.yearManufacture}}/{{item.yearModel}}</p>
      <p><strong>KM:</strong> {{item.km|number}}</p>
@@ -119,27 +111,33 @@ para o sistema Open Graph
      <p><strong>Portas:</strong> {{item.ports}}</p>
      <p><strong>Combustível:</strong> {{item.fuel}}</p>
     </ion-label>
-   </ion-item>
+  </div>
    
    
-  <p><strong>Acessórios</strong></p>
-  <ion-badge style="margin-right: 3px;" color="secondary" *ngFor="let item of item.accessories">{{item}}</ion-badge>
+  <div class="info-content"> 
+      <h3><strong>Acessórios</strong></h3>
+  </div>
+  <div padding>
+    
+    <ion-badge style="margin-right: 3px;" color="secondary" *ngFor="let item of item.accessories">{{item}}</ion-badge>
+  </div>
+  
    
 
-   <p><strong>Observações do vendedor</strong></p>
-   <ion-item color="medium"> 
+   <div class="info-content"> 
+     <h3><strong>Observações do vendedor</strong></h3>
     <ion-text>
      
     </ion-text>
      <ion-text>
        <p>{{item.comments}}</p>
      </ion-text>  
-   </ion-item>
+    </div>
 
    
    <div *ngIf="similarByCategory.length>0">
-      <p><strong>Veículos similares</strong></p>
-      <ion-slides [options]="{slidesPerView:2}" #similarProductsSlides pager="true">
+      <p padding><strong>Veículos similares</strong></p>
+      <ion-slides [options]="{slidesPerView:2}" #similarProductsSlides pager="false">
           <ion-slide  *ngFor="let prod of similarByCategory;  let pos = index" routerLink="/products/detail/{{prod.objectID}}" >
               <app-product-thumb-item [item]="prod"></app-product-thumb-item>
           </ion-slide>
