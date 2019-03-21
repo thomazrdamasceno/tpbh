@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController, ToastController, LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +9,23 @@ export class AppUtil {
    
   loadingElement: HTMLIonLoadingElement;
   constructor(private toastController: ToastController,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private router: Router,
+    private loadingCtrl: LoadingController
     ) { 
-
+        
      
     }
 
   
+    async changeRouter(url: string){
+           
+      let loading = await this.loadingCtrl.create();
+      await loading.present();
+      this.router.navigateByUrl(url).then(()=>{
+        loading.dismiss();
+      });
+    }
 
   showMessage(message: string) {
    this.toastController.create({

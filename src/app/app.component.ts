@@ -1,5 +1,5 @@
-import { Component, AfterViewInit } from '@angular/core';
-import { Platform, IonicModule, ModalController, AlertController } from '@ionic/angular';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Platform, IonicModule, ModalController, AlertController, LoadingController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import * as firebase from 'firebase/app';
@@ -14,6 +14,7 @@ import { RoutingStateService } from './shared/routing-state/routing-state.servic
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { GoogleAnalyticsService } from './shared/analytics/analytics.service';
 import { ShareAppComponent } from './widgets/share-app/share-app.component';
+import { AppUtil } from './shared/app-util/app-util.service';
 
 
 
@@ -22,6 +23,7 @@ import { ShareAppComponent } from './widgets/share-app/share-app.component';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
 
   showShareOptions = false;
   initComponent = false;
@@ -56,9 +58,12 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router: Router,
     private modalController: ModalController,
-    private routingState: RoutingStateService
+    private routingState: RoutingStateService,
+    private appUtil: AppUtil
 
   ) {
+
+   
     this.initializeApp();
 
      
@@ -70,7 +75,11 @@ export class AppComponent {
      let cod = element.value;
      cod = cod.replace('TC', '');
      cod = cod.replace('tc', '');
-     this.router.navigateByUrl('/products/detail/' + cod);
+     this.appUtil.changeRouter('/products/detail/' + cod);
+  }
+
+  changeRouter(url: string){
+    this.appUtil.changeRouter(url);
   }
 
   logOut() {
@@ -95,6 +104,7 @@ export class AppComponent {
 
   async initializeApp() {
 
+   
     
     if(this.platform.is("desktop")){
 
@@ -119,15 +129,19 @@ export class AppComponent {
       //Verifica se há atualização no ionic pro
       //await this.checkUpdates();
 
+      
+
     this.analyticsService.startTrackerWithId(environment.googleAnalytics.code);
     
-    this.router.events.subscribe(event=> {
+    this.router.events.subscribe(async event=> {
 
+      
         
       if (event instanceof NavigationEnd) {
+
         
         let url:string = event.url;
-        if(url.indexOf("/products/detail/")!=-1){
+        if(url.indexOf("/products/detail/")!=-1 || url.indexOf("/veiculo/detalhe/")!=-1){
            url = "/products/detail/";
         }
         this.analyticsService.trackView(url);
