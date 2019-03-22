@@ -60,20 +60,15 @@ para o sistema Open Graph
                   <span  *ngIf="item.sold!=1"class="photo-quantity">{{item.imgs.length}} fotos</span>
                   <span *ngIf="item.sold==1" class="sold-text">VENDIDO</span>
               </div> 
-              <ion-button (click)="pswpMultiThumbnail(0)" fill="outline"  expand="block" expand-md="none">
-                <ion-icon color="secondary" slot="start" name="camera"></ion-icon> Visualizar todas as fotos
-              </ion-button>  
               
-              <ion-button fill="outline" (click)="share()"   expand="block" expand-md="none">
-                  <ion-icon  slot="start" name="share"></ion-icon> Compartilhar este anúncio
-              </ion-button>
-              <ion-item>
+              
+              <ion-item lines="none">
                 <ion-text class="product-title">{{item.title}}</ion-text>
   
               </ion-item>
-              <ion-item lines="none" >
+              <ion-item  lines="full">
                 <ion-text *ngIf="!item.price">Valor à combinar</ion-text>
-                <ion-text *ngIf="item.price" class="product-price">{{item.price|currency: 'BRL'}}</ion-text>
+                <ion-text  *ngIf="item.price" class="product-price">{{item.price|currency: 'BRL'}}</ion-text>
   
               </ion-item>
   
@@ -84,19 +79,25 @@ para o sistema Open Graph
                </ion-item>
               --> 
 
-              <ion-item lines="none" color="medium"> 
-                  <ion-icon color="light" slot="start" name="pin"></ion-icon>
+              <ion-item lines="full"> 
+                  <ion-icon  name="pin"></ion-icon>
                   <ion-label> {{item.city?.label}} - MG</ion-label>
+                  
               </ion-item>
+
+              <div class="owner-info">
+                <ion-item lines="none">
+                    <ion-icon   name="person"></ion-icon>
+                    <ion-label color="medium"> <strong>{{item.ownerName}}</strong></ion-label>
+                </ion-item>
+                <ion-item *ngFor="let tel of item.tels"  lines="none" >
+                    <ion-icon   name="call"></ion-icon>
+                    <ion-label color="medium"> <strong>{{tel}}</strong></ion-label>
+                </ion-item>
+              </div>
   
-              <ion-item >
-                <ion-icon color="secondary" slot="start" name="person"></ion-icon>
-                <ion-label><strong>{{item.ownerName}}</strong></ion-label>
-              </ion-item>
-              <ion-item *ngFor="let tel of item.tels" lines="full" >
-                <ion-icon  color="secondary" slot="start" name="call"></ion-icon>
-                <ion-label>{{tel}}</ion-label>
-              </ion-item>
+              
+              
              
       
    <div>  
@@ -147,7 +148,13 @@ para o sistema Open Graph
    
      
     </div>  
+    <div padding>
+    <ion-button  fill="outline" (click)="share()"   expand="block" expand-md="none">
+        <ion-icon  slot="start" name="share"></ion-icon> Compartilhar este anúncio
+      </ion-button>
+    </div>
   </div>
+  
   </ion-content>
     
      <ion-footer *ngIf="item.objectID" no-padding no-margin>

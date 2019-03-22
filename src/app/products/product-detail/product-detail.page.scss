@@ -65,7 +65,9 @@
   
   
   .product-price{
-           font-size: 1.39em
+           font-size: 1.39em;
+           font-weight: normal!important;
+            color: #404450;
       }
 
   .info-content{
@@ -81,5 +83,18 @@
     }
    
     
-  }    
+  }   
+  
+  .owner-info{
+       ion-icon{
+         font-size:15px
+       }
+      ion-label{
+        font-size:15px;
+        margin-left:5px;
+      }
+      ion-item{
+        height: 32px;
+      }
+  }
   
